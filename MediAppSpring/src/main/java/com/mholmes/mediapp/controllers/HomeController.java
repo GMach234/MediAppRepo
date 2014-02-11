@@ -1,4 +1,4 @@
-package com.mholmes.mediapp;
+package com.mholmes.mediapp.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
