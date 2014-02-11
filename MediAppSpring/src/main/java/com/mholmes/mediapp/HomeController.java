@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/controlPanel", method = RequestMethod.GET)
+	public String controlPanel(Locale locale, Model model) {
+		return "controlPanel";
+	}
+	
 }

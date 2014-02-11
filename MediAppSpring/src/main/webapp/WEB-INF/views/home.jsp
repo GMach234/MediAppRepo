@@ -10,5 +10,10 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<form action="/mediapp/controlPanel">
+<button type="submit">Manage Users</button>
+</form>
+
 </body>
 </html>
