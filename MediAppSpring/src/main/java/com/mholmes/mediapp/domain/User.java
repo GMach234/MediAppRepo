@@ -5,15 +5,20 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	String id;
-	int type;
 	String name;
+	String type;
 	String address;
 	int phone;
 	String email;
 	String password;
 	
-	public User(){
-		
+	public User(String name, String type, String address, int phone, String email, String password) {
+		this.name = name; 
+		this.type = type;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.password = password;
 	}
 
 	public String getId() {
@@ -24,11 +29,11 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
