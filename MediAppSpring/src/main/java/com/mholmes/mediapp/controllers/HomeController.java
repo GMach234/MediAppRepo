@@ -10,8 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mholmes.mediapp.dao.impl.UserDAOImpl;
 import com.mholmes.mediapp.domain.User;
@@ -49,14 +52,41 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/controlPanel", method = RequestMethod.GET)
-	public String controlPanel(Locale locale, Model model) {
-		
-		User newUser = new User("Michael Holmes", "GP", "123 fake street", 02355457, "michael@michael.com", "myPassword");
-		
-		userService =  (UserService)services.getBean("UserService");
-		userService.create(newUser);
-		
+	public String controlPanel(Locale locale, Model model) {		
 		return "controlPanel";
 	}
+	
+	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
+	public ModelAndView usersPanel() {
+		
+		return new ModelAndView("usersPanel", "command", new User());
+	}
+	
+	@RequestMapping(value = "/usersPanel/addUser", method = RequestMethod.POST)
+	public ModelAndView addUser(@ModelAttribute User user, ModelMap model) {
+		
+		System.out.println(user.getName());
+		System.out.println(user.getAddress());
+		System.out.println(user.getPhone());
+		System.out.println(user.getEmail());
+		System.out.println(user.getType());
+		System.out.println(user.getPassword());
+		
+		userService = (UserService)services.getBean("UserService");
+		userService.create(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword());
+		
+		return new ModelAndView("usersPanel", "command", new User());
+	}
+	
+	@RequestMapping(value = "/usersPanel/searchResults", method = RequestMethod.POST)
+	public ModelAndView searchResultsRs(@ModelAttribute User user, ModelMap model) {
+		
+		System.out.println(user.getId());
+		System.out.println(user.getName());
+		System.out.println(user.getEmail());
+		
+		return new ModelAndView("usersPanel", "command", new User());
+	}
+	
 	
 }

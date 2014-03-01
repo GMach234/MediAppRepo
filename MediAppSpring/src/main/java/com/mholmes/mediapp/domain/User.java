@@ -4,28 +4,29 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-	String id;
+	int id;
 	String name;
 	String type;
 	String address;
-	int phone;
+	String phone;
 	String email;
 	String password;
 	
-	public User(String name, String type, String address, int phone, String email, String password) {
+	/*public User(String name, String type, String address, int phone, String email, String password) {
 		this.name = name; 
 		this.type = type;
 		this.address = address;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
-	}
+	}*/
 
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -53,11 +54,11 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

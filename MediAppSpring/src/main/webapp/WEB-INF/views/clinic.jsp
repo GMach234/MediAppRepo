@@ -4,17 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Control Panel</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<form action="/mediapp/usersPanel">
-<button type="submit">Users</button>
-</form>
-
-<form action="/mediapp/clinicspanel">
-<button type="submit">Clinics</button>
-</form>
 
 </body>
 </html>

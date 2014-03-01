@@ -28,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 		return jdbcTemplate;
 	}
 	
-	@Override
+/*	@Override
 	public void create(User user) {
 
 			
@@ -46,7 +46,24 @@ public class UserDAOImpl implements UserDAO {
 			catch(Exception e){
 				e.printStackTrace();
 			}
+	}	*/
+	
+	@Override
+	public void create(String name, String type, String address, String phone, String email, String password) {
+
+			System.out.println("*~[Adding user to DB]~*");
+			
+			String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD)" +
+						" values (?, ?, ?, ?, ?, ?)";
+			try{
+			getJdbcTemplate().update(SQL, new Object[] {
+							name, type, address, phone, email, password});
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 	}	
+
 }
 
 
