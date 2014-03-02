@@ -10,8 +10,8 @@ public interface UserDAO {
 	public void create(String name, String type, String address, String phone, String email, String password);
 	//public void delete(String id);
 	
-	//public User getUser(String id);
-	//public List<User> listUsers();
+	public User getUser(int id);
+	public List<User> listUsers(int id, String name, String email);
 	
 	//public void update(User user);
 	

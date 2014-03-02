@@ -1,5 +1,7 @@
 package com.mholmes.mediapp.service.impl;
 
+import java.util.List;
+
 import com.mholmes.mediapp.dao.UserDAO;
 import com.mholmes.mediapp.domain.User;
 import com.mholmes.mediapp.service.UserService;
@@ -17,26 +19,26 @@ private UserDAO userDAO;
 		userDAO.create(name, type, address, phone, email, password);
 	}
 
-	/*public User getUser(String username) {
-		return userDAO.getUser(username);
+	public User getUser(int id) {
+		return userDAO.getUser(id);
 	}
 
 	@Override
-	public List<User> listUsers() {
-		return userDAO.listUsers();
+	public List<User> listUsers(int id, String name, String email){
+		return userDAO.listUsers(id, name, email);
 	}
 
-	@Override
+	/*@Override
 	public void delete(String username) {
 		userDAO.delete(username);
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void update(User user) {
 		userDAO.update(user);
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void batchUpdate(List<User> users) {
 		userDAO.batchUpdate(users);
 	}*/

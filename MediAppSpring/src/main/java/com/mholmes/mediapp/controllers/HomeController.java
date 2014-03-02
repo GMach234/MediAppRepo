@@ -2,6 +2,7 @@ package com.mholmes.mediapp.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -79,13 +80,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/usersPanel/searchResults", method = RequestMethod.POST)
-	public ModelAndView searchResultsRs(@ModelAttribute User user, ModelMap model) {
+	public String searchResultsRs(@ModelAttribute User user, ModelMap model) {
 		
-		System.out.println(user.getId());
-		System.out.println(user.getName());
-		System.out.println(user.getEmail());
+		userService = (UserService)services.getBean("UserService");
+		List<User> users = userService.listUsers(user.getId(), user.getName(), user.getEmail()); 
+
+		for(int i = 0; i<users.size(); i++) {
+			System.out.println(users.get(i).getId());
+			System.out.println(users.get(i).getName());
+			System.out.println(users.get(i).getAddress());
+			System.out.println(users.get(i).getPhone());
+			System.out.println(users.get(i).getEmail());
+			System.out.println(users.get(i).getPassword());
+			System.out.println(users.get(i).getType());
+		}
 		
-		return new ModelAndView("usersPanel", "command", new User());
+		model.addAttribute("users", users);
+		
+		return "listUsers";
 	}
 	
 	

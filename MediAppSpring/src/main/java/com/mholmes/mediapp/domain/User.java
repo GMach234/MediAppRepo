@@ -11,6 +11,7 @@ public class User implements Serializable {
 	String phone;
 	String email;
 	String password;
+	int clinic;
 	
 	/*public User(String name, String type, String address, int phone, String email, String password) {
 		this.name = name; 
@@ -22,6 +23,14 @@ public class User implements Serializable {
 	}*/
 
 	
+	public int getClinic() {
+		return clinic;
+	}
+
+	public void setClinic(int clinic) {
+		this.clinic = clinic;
+	}
+
 	public int getId() {
 		return id;
 	}
