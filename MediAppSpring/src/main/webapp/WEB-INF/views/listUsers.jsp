@@ -13,17 +13,22 @@
 <h2>Users</h2>
 
 
-<table cellspacing="400" class="horizontalRuled">
+<table cellspacing="150" class="horizontalRuled">
 
 	<c:forEach items="${users}" var="user">
-		<p>Name: ${user.name}</p>
-		<p>ID: ${user.id}</p>
-		<p>Address: ${user.address}</p>
-		<p>Phone: ${user.phone}</p>
-		<p>Email: ${user.email}</p>
-		<p>Type: ${user.type}</p>
-		<br>
-		<br>
+		
+		<form action="/mediapp/usersPanel/showUser/${user.id}">
+			<p>Name: ${user.name}</p>
+			<p>ID: ${user.id}</p>
+			<p>Address: ${user.address}</p>
+			<p>Phone: ${user.phone}</p>
+			<p>Email: ${user.email}</p>
+			<p>Type: ${user.type}</p>
+			<br>
+			<br>
+		<button type="submit">View</button>
+		</form>
+		
 	</c:forEach>
 </table>
 

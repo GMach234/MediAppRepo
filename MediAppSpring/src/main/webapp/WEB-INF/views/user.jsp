@@ -8,5 +8,15 @@
 </head>
 <body>
 
+<h2>${user.name}</h2>
+
+		<p>Name: ${user.name}</p>
+		<p>ID: ${user.id}</p>
+		<p>Address: ${user.address}</p>
+		<p>Phone: ${user.phone}</p>
+		<p>Email: ${user.email}</p>
+		<p>Type: ${user.type}</p>
+			
+
 </body>
 </html>

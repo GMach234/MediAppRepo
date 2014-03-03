@@ -14,9 +14,9 @@ private UserDAO userDAO;
     	this.userDAO = userDAO;
     }	
 	
-	public void create(String name, String type, String address, String phone, String email, String password) {
+	public void createUser(String name, String type, String address, String phone, String email, String password) {
 		//if(user.getEnabled() == null) user.setEnabled(1);
-		userDAO.create(name, type, address, phone, email, password);
+		userDAO.createUser(name, type, address, phone, email, password);
 	}
 
 	public User getUser(int id) {

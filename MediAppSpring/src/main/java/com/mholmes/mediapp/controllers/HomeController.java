@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -63,6 +64,12 @@ public class HomeController {
 		return new ModelAndView("usersPanel", "command", new User());
 	}
 	
+	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
+	public ModelAndView usersPanel() {
+		
+		return new ModelAndView("usersPanel", "command", new User());
+	}
+	
 	@RequestMapping(value = "/usersPanel/addUser", method = RequestMethod.POST)
 	public ModelAndView addUser(@ModelAttribute User user, ModelMap model) {
 		
@@ -74,7 +81,7 @@ public class HomeController {
 		System.out.println(user.getPassword());
 		
 		userService = (UserService)services.getBean("UserService");
-		userService.create(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword());
+		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword());
 		
 		return new ModelAndView("usersPanel", "command", new User());
 	}
@@ -98,6 +105,17 @@ public class HomeController {
 		model.addAttribute("users", users);
 		
 		return "listUsers";
+	}
+	
+	@RequestMapping(value = "/usersPanel/showUser/{user.id}", method = RequestMethod.GET)
+	public String showUser(@PathVariable("user.id") int id, ModelMap model) {
+		
+		userService = (UserService)services.getBean("UserService");
+		User user = userService.getUser(id);
+		
+		model.addAttribute("user", user);
+		
+		return "user";
 	}
 	
 	
