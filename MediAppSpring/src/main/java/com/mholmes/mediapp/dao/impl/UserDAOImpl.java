@@ -56,7 +56,6 @@ public class UserDAOImpl implements UserDAO {
 		List<User> users = getJdbcTemplate().query(SQL,
 						new UserMapper());
 		
-		
 		return users;
 	}
 	

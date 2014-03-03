@@ -10,9 +10,15 @@ public class Clinic implements Serializable {
 	String town;
 	String name;
 	String address;
+	String phone;
 	String email;
 	
-	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public int getId() {
 		return id;
 	}

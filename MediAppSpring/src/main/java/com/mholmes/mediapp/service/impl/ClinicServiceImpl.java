@@ -15,9 +15,9 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
-	public void createClinic(String country, String province, String town, String name, String address, String email) {
+	public void createClinic(String country, String province, String town, String name, String address, String phone, String email) {
 		
-		clinicDAO.createClinic(country, province, town, name, address, email);
+		clinicDAO.createClinic(country, province, town, name, address, phone, email);
 	}
 
 	@Override

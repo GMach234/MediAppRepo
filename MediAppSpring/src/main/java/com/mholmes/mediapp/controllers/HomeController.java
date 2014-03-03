@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mholmes.mediapp.dao.impl.UserDAOImpl;
+import com.mholmes.mediapp.domain.Clinic;
 import com.mholmes.mediapp.domain.User;
+import com.mholmes.mediapp.service.ClinicService;
 import com.mholmes.mediapp.service.UserService;
 
 /**
@@ -30,6 +32,7 @@ import com.mholmes.mediapp.service.UserService;
 public class HomeController {
 	
 	private static UserService userService;
+	private static ClinicService clinicService;
 	private static ApplicationContext services =
 	         new ClassPathXmlApplicationContext("dataAccess.xml");
 	
@@ -56,12 +59,6 @@ public class HomeController {
 	@RequestMapping(value = "/controlPanel", method = RequestMethod.GET)
 	public String controlPanel(Locale locale, Model model) {		
 		return "controlPanel";
-	}
-	
-	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
-	public ModelAndView usersPanel() {
-		
-		return new ModelAndView("usersPanel", "command", new User());
 	}
 	
 	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
@@ -118,5 +115,29 @@ public class HomeController {
 		return "user";
 	}
 	
+	
+	@RequestMapping(value = "/clinicsPanel", method = RequestMethod.GET)
+	public ModelAndView clinicsPanel() {
+		
+		return new ModelAndView("clinicsPanel", "command", new Clinic());
+	}
+	
+	@RequestMapping(value = "/clinicsPanel/addClinic", method = RequestMethod.POST)
+	public ModelAndView addUser(@ModelAttribute Clinic clinic, ModelMap model) {
+		
+		System.out.println(clinic.getCountry());
+		System.out.println(clinic.getProvince());
+		System.out.println(clinic.getTown());
+		System.out.println(clinic.getName());
+		System.out.println(clinic.getAddress());
+		System.out.println(clinic.getPhone());
+		System.out.println(clinic.getEmail());
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		clinicService.createClinic(clinic.getCountry(), clinic.getProvince(), clinic.getTown(), 
+				clinic.getName(), clinic.getAddress(), clinic.getPhone(), clinic.getEmail());
+
+		return new ModelAndView("clinicsPanel", "command", new Clinic());
+	}
 	
 }

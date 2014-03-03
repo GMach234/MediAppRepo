@@ -15,11 +15,17 @@
    		<bean id="UserDAO" class="com.mholmes.mediapp.dao.impl.UserDAOImpl">
       		<property name="dataSource" ref="dataSource" />
     	</bean>
+    	<bean id="ClinicDAO" class="com.mholmes.mediapp.dao.impl.ClinicDAOImpl">
+      		<property name="dataSource" ref="dataSource" />
+    	</bean>
     	 	
 <!-- END OF DAO'S DECLARATIONS -->   
    
       	<bean id="UserService" class="com.mholmes.mediapp.service.impl.UserServiceImpl">
       		<property name="userDAO" ref="UserDAO" />
+    	</bean>
+    	<bean id="ClinicService" class="com.mholmes.mediapp.service.impl.ClinicServiceImpl">
+      		<property name="clinicDAO" ref="ClinicDAO" />
     	</bean>
 
 <!-- END OF SERVICES DECLARATIONS -->
