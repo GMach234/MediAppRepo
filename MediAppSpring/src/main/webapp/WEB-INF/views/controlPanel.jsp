@@ -12,7 +12,7 @@
 <button type="submit">Users</button>
 </form>
 
-<form action="/mediapp/clinicspanel">
+<form action="/mediapp/clinicsPanel">
 <button type="submit">Clinics</button>
 </form>
 

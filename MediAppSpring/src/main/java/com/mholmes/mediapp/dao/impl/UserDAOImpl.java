@@ -52,9 +52,8 @@ public class UserDAOImpl implements UserDAO {
 	
 	public List<User> listUsers(int id, String name, String email) {
 		
-		String SQL = "select * from users where user_id = '"+id+"' or name = '"+name+"' or email = '"+email+"'";
-		List<User> users = getJdbcTemplate().query(SQL,
-						new UserMapper());
+		String SQL = "select user_id, name, email from users where user_id = ? or name = ? or email = ?";
+		List<User> users = getJdbcTemplate().query(SQL,new Object[]{id, name, email}, new UserMapper());
 		
 		return users;
 	}
