@@ -15,12 +15,6 @@ public class tesamin {
 	
 	public static void main(String[] args) {
 		
-		
-		
-		userService =  (UserService)services.getBean("UserService");
-		User newUser = new User("123","GP","123",123,"123","123");
-		userService.create(newUser);
-		
 	}
 
 }

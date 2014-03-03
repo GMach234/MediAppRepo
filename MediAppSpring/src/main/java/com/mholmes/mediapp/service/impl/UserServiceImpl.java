@@ -28,6 +28,10 @@ private UserDAO userDAO;
 		return userDAO.listUsers(id, name, email);
 	}
 
+	public void removeUser(int id) {
+		userDAO.removeUser(id);
+	}
+	
 	/*@Override
 	public void delete(String username) {
 		userDAO.delete(username);

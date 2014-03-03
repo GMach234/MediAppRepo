@@ -83,7 +83,7 @@ public class HomeController {
 		return new ModelAndView("usersPanel", "command", new User());
 	}
 	
-	@RequestMapping(value = "/usersPanel/searchResults", method = RequestMethod.POST)
+	@RequestMapping(value = "/usersPanel/userSearchResults", method = RequestMethod.POST)
 	public String searchResultsRs(@ModelAttribute User user, ModelMap model) {
 		
 		userService = (UserService)services.getBean("UserService");
@@ -105,14 +105,23 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/usersPanel/showUser/{user.id}", method = RequestMethod.GET)
-	public String showUser(@PathVariable("user.id") int id, ModelMap model) {
+	public ModelAndView showUser(@PathVariable("user.id") int id, ModelMap model) {
 		
 		userService = (UserService)services.getBean("UserService");
 		User user = userService.getUser(id);
 		
 		model.addAttribute("user", user);
 		
-		return "user";
+		return new ModelAndView("user", "command", new User());
+	}
+	
+	@RequestMapping(value = "/usersPanel/removeUser", method = RequestMethod.POST)
+	public ModelAndView removeUser(@ModelAttribute User user, ModelMap model) {
+		
+		userService = (UserService)services.getBean("UserService");
+		userService.removeUser(user.getId());
+		
+		return new ModelAndView("usersPanel", "command", new User());
 	}
 	
 	
@@ -137,6 +146,47 @@ public class HomeController {
 		clinicService.createClinic(clinic.getCountry(), clinic.getProvince(), clinic.getTown(), 
 				clinic.getName(), clinic.getAddress(), clinic.getPhone(), clinic.getEmail());
 
+		return new ModelAndView("clinicsPanel", "command", new Clinic());
+	}
+	
+	@RequestMapping(value = "/clinicsPanel/clinicSearchResults", method = RequestMethod.POST)
+	public String clinicSearchResultsRs(@ModelAttribute Clinic clinic, ModelMap model) {
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<Clinic> clinics = clinicService.listClinics(clinic.getId(), clinic.getName(), clinic.getEmail()); 
+
+		for(int i = 0; i<clinics.size(); i++) {
+			System.out.println(clinics.get(i).getId());
+			System.out.println(clinics.get(i).getName());
+			System.out.println(clinics.get(i).getCountry());
+			System.out.println(clinics.get(i).getProvince());
+			System.out.println(clinics.get(i).getTown());
+			System.out.println(clinics.get(i).getPhone());
+			System.out.println(clinics.get(i).getEmail());
+		}
+		
+		model.addAttribute("clinics", clinics);
+		
+		return "listClinics";
+	}
+	
+	@RequestMapping(value = "/clinicsPanel/showClinic/{clinic.id}", method = RequestMethod.GET)
+	public ModelAndView showClinic(@PathVariable("clinic.id") int id, ModelMap model) {
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		Clinic clinic = clinicService.getClinic(id);
+		
+		model.addAttribute("clinic", clinic);
+		
+		return new ModelAndView("clinic", "command", new Clinic());
+	}
+	
+	@RequestMapping(value = "/clinicsPanel/removeClinic", method = RequestMethod.POST)
+	public ModelAndView removeClinic(@ModelAttribute Clinic clinic, ModelMap model) {
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		clinicService.removeClinic(clinic.getId());
+		
 		return new ModelAndView("clinicsPanel", "command", new Clinic());
 	}
 	

@@ -50,7 +50,7 @@
 </form:form>
 
 <h2>Search Users</h2>
-<form:form method="POST" action="/mediapp/usersPanel/searchResults">
+<form:form method="POST" action="/mediapp/usersPanel/userSearchResults">
 	<table>
 		<tr>
 			<td><form:label path="id">ID</form:label></td>

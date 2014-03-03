@@ -26,8 +26,13 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
-	public List<Clinic> listClinics(int id, String country, String province, String town, String name, String email) {
-		return clinicDAO.listClinics(id, country, province, town, name, email);
+	public List<Clinic> listClinics(int id, String name, String email) {
+		return clinicDAO.listClinics(id, name, email);
+	}
+
+	@Override
+	public void removeClinic(int id) {
+		clinicDAO.removeClinic(id);
 	}
 	
 }

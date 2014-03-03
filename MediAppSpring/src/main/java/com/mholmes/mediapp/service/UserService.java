@@ -11,6 +11,7 @@ public interface UserService {
 	  
 	public List<User> listUsers(int id, String name, String email);
 	 
+	public void removeUser(int id);
 	//public void delete(String id);
 	 
 	//public void update(User user);

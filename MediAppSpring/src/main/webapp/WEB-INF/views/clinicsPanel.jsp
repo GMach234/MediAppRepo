@@ -15,9 +15,7 @@
 <h2>New Clinic</h2>
 
 <%
-
 String thing = "";
-
 try{
 	String connectionURL = "jdbc:mysql://localhost:3306/mediappdb";
 	Connection connection = null;
@@ -37,28 +35,16 @@ try{
 catch(Exception ex) {
 	out.println("Failure");
 }
-
 String that = "hello";
-
 %>
-
 <%=thing %>
 
 
 <form:form method="POST" action="/mediapp/clinicsPanel/addClinic">
 	<table>
 		<tr>
-			<td><form:label path="country">Country</form:label></td>	
-			<td>
-				<form:select path="country">
-				
-					<%String query = "select * from clinic"; %>
-				
-					<option value="GP" selected>GP</option>
-					<option value="Consultant" selected>Consultant</option>
-					<option value="Admin" selected>Admin</option>
-				</form:select>
-			</td>
+			<td><form:label path="country">Country</form:label></td>
+			<td><form:input path="country"/></td>
 		</tr>
 		<tr>
 			<td><form:label path="province">Province</form:label></td>
@@ -73,8 +59,16 @@ String that = "hello";
 			<td><form:input path="name"/></td>
 		</tr>
 		<tr>
-			<td><form:label path="address">address</form:label></td>
+			<td><form:label path="address">Address</form:label></td>
 			<td><form:input path="address"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="phone">Phone</form:label></td>
+			<td><form:input path="phone"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="email">Email</form:label></td>
+			<td><form:input path="email"/></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -82,6 +76,54 @@ String that = "hello";
 		</tr>
 	</table>
 </form:form>
+
+<h2>Search Clinic</h2>
+<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
+	<table>
+		<tr>
+			<td><form:label path="country">Country</form:label></td>
+			<td><form:input path="country"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="province">Province</form:label></td>
+			<td><form:input path="province"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="town">Town</form:label></td>
+			<td><form:input path="town"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="name">Name</form:label></td>
+			<td><form:input path="name"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Search"/>
+		</tr>
+	</table>
+</form:form>
+
+<h2>Search by Email/ID</h2>
+<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
+	<table>
+		<tr>
+			<td><form:label path="id">ID</form:label></td>
+			<td><form:input path="id"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="email">Email</form:label></td>
+			<td><form:input path="email"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Search"/>
+		</tr>
+	</table>
+</form:form>
+
+<form action="/mediapp/controlPanel">
+<button type="submit">Control Panel</button>
+</form>
 
 </body>
 </html>

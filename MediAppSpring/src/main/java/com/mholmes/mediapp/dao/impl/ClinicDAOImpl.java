@@ -34,7 +34,7 @@ public class ClinicDAOImpl implements ClinicDAO {
 	@Override
 	public void createClinic(String country, String province, String town, String name, String address, String phone, String email) {
 		
-		String SQL = "insert into clinic (COUNTRY, PROVINCE, TOWN, NAME, ADDRESS, PHONE, EMAIL)" +
+		String SQL = "insert into clinics (COUNTRY, PROVINCE, TOWN, NAME, ADDRESS, PHONE, EMAIL)" +
 					" values (?, ?, ?, ?, ?, ?, ?)";
 		try{
 			getJdbcTemplate().update(SQL, new Object[] {
@@ -47,20 +47,34 @@ public class ClinicDAOImpl implements ClinicDAO {
 
 	@Override
 	public Clinic getClinic(int id) {
-		String SQL = "select * from clinic where clinic_id = ?";
+		String SQL = "select * from clinics where clinic_id = ?";
 		Clinic clinic = (Clinic) getJdbcTemplate().queryForObject(SQL, 
 						new Object[]{id}, new ClinicMapper());
 		return clinic;
 	}
 
 	@Override
-	public List<Clinic> listClinics(int id, String country, String province, String town, String name, String email) {
+	public List<Clinic> listClinics(int id, String name, String email) {
 		
-		String SQL = "";
-		List<Clinic> clinics = getJdbcTemplate().query(SQL,
+		String SQL = "select * from clinics where clinic_id = ? or name = ? or email = ?";
+		List<Clinic> clinics = getJdbcTemplate().query(SQL, new Object[]{id, name, email},
 						new ClinicMapper()); 
-		
+				
 		return clinics;
+	}
+
+	@Override
+	public void removeClinic(int id) {
+		
+		String SQL = "delete from clinics where clinic_id = ?";
+		//Take Patients into account
+		try{
+			getJdbcTemplate().update(SQL, id);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
