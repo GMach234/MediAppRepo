@@ -6,53 +6,56 @@
 
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MediApp Home</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.css"/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.min.css"/>" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 
-
 <div class="container">
-	<h1><a href="#">MediApp Control Panel</a></h1>
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
 
+<!-- NavBar -->
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">		
+	  
+	  	<div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand">Panels</a>
+	    	</div>
+	  
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="/mediapp/usersPanel">User Panel</a></li>
+	        <li><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+<!-- End NavBar -->	
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    Basic panel example
-  </div>
-</div>
-
-<div class="navbar">
-	<div class="navbar-inner">
-		<div class="container">
-			<ul class="nav">
-				<li><a href="/mediapp/usersPanel">Users Panel</a></li>
-				<li><a href="/mediapp/clinicsPanel">Clinics Panel</a></li>
-				<li><a href="#">Logout</a>	
-			</ul>
+<!-- Content -->
+	<div class="row">
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h4>Actions</h4></div>
+					<div class="panel-body">
+					</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="jumbotron">
+			</div>
 		</div>
 	</div>
-</div>
 <hr>
-<div class="row">
-	<div class="span4">
-		<ul class="nav nav-list">
-			<li class="nav-header">Actions</li>
-		</ul>
-	</div>
-	<div class="span8">
-		<div class="hero-unit">	
-		</div>
-	</div>
-	
-</div>
-<hr>
+<!-- End Content -->
 </div>
 
 <script src="//code.jquery.com/jquery.js"></script>
