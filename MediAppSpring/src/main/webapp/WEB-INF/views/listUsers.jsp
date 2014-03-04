@@ -2,36 +2,73 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<title>MediApp Home</title>
+	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
 </head>
 <body>
 
-<h2>Users</h2>
+<div class="container">
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
 
-
-<table cellspacing="150" class="horizontalRuled">
-
-	<c:forEach items="${users}" var="user">
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<ul class="nav">
+				<li class="active"><a href="/mediapp/usersPanel">Users Panel</a></li>
+				<li><a href="/mediapp/clinicsPanel">Clinics Panel</a></li>	
+			</ul>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="span4">
+		<ul class="nav nav-list">
+			<li class="nav-header">Actions</li>
+			<li><a href="#">Create User</a></li>
+			<li class="active"><a href="#">Search Users</a></li>
+		</ul>
+	</div>
+	<div class="span8">
 		
-		<form action="/mediapp/usersPanel/showUser/${user.id}">
-			<p>Name: ${user.name}</p>
-			<p>ID: ${user.id}</p>
-			<p>Address: ${user.address}</p>
-			<p>Phone: ${user.phone}</p>
-			<p>Email: ${user.email}</p>
-			<p>Type: ${user.type}</p>
-			<br>
-			<br>
-		<button type="submit">View</button>
-		</form>
+			<h4>Search Results</h4>
+			
+			<c:forEach items="${users}" var="user">
+			<form action="/mediapp/usersPanel/showUser/${user.id}">
+				<div class="well">
+					<div class="panel panel-default">
+						<div class="panel-heading">Name: ${user.name}</div>
+							<div class="panel-body">
+								<table class="table">
+									<tbody>
+										<tr>
+											<td>ID: ${user.id}</td>
+											<td>Type: ${user.type}</td>
+										</tr>
+										<tr>
+											<td>Email: ${user.email}</td>
+											<td>Phone: ${user.phone}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+					<button type="submit">View User</button>
+				</div>
+			</form>
+			</c:forEach>				
 		
-	</c:forEach>
-</table>
+	</div>
+	
+</div>
+<hr>
+</div>
 
-
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </body>
 </html>

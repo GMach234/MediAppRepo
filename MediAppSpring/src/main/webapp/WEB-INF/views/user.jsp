@@ -1,13 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MediApp User View</title>
+	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" type="text/css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.css"/>" type="text/css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.min.css"/>" type="text/css">
 </head>
 <body>
+
+<div class="container">
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
+
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<ul class="nav">
+				<li><a href="/mediapp/usersPanel">Users Panel</a></li>
+				<li><a href="/mediapp/clinicsPanel">Clinics Panel</a></li>
+				<li><a href="#">Logout</a>	
+			</ul>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="span4">
+		<ul class="nav nav-list">
+			<li class="nav-header">Actions</li>
+			<li><a href="#">Create User</a></li>
+			<li class="active"><a href="#">Search Users</a></li>
+		</ul>
+	</div>
+	<div class="span8">
+		<div class="hero-unit">	
+		</div>
+	</div>
+	
+</div>
+<hr>
+</div>
 
 <h2>${user.name}</h2>
 
@@ -52,6 +90,8 @@
 			</table>
 		</form:form>
 		
-			
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>			
 </body>
 </html>
