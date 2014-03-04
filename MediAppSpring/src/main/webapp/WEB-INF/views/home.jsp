@@ -5,16 +5,17 @@
 
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>MediApp Home</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
+	<title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 
 <div class="container">
 	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
 
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
 			<ul class="nav">

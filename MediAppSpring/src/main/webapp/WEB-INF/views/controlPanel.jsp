@@ -17,6 +17,7 @@
 </head>
 <body>
 
+
 <div class="container">
 	<h1><a href="#">MediApp Control Panel</a></h1>
 
@@ -54,6 +55,7 @@
 <hr>
 </div>
 
+<script src="//code.jquery.com/jquery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
