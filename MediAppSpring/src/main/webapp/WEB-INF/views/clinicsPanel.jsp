@@ -76,103 +76,88 @@ String that = "hello";
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Actions</h4></div>
 					<div class="panel-body">
-						<ul class="nav nav-list">
-							<li class="nav-header">Actions</li>
-							<li class="active"><a id="createClinic" href="">Create Clinic</a></li>
-							<li><a id="searchClinic" href="">Search Clinics</a></li>
-						</ul>
+						<div class="list-group">
+							<a class="list-group-item" id="createClinic" href="">Create Clinic</a>
+							<a class="list-group-item" id="searchClinic" href="">Search Clinics</a>
+						</div>
 					</div>
 			</div>
 		</div>
 		<div class="col-md-9">
-			<div class="jumbotron">
 				<div id="createForm">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4>Create Clinic</h4></div>
 							<div class="panel-body">
-
-									<table>
-									</table>
-
+								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic">
 										<div class="input-group">
 											<span style="width: 100px;" class="input-group-addon">Country</span>
-											<input type="text" class="form-control">
+											<form:input path="country" style="width: 250px;" type="text" class="form-control"/>
 										</div>
 
 										<div class="input-group">
 											<span style="width: 100px;" class="input-group-addon">Province</span>
-											<input type="text" class="form-control">
+											<form:input path="province" style="width: 250px" type="text" class="form-control"/>
 										</div>
-
+										<div class="input-group">
+											<span style="width: 100px;" class="input-group-addon">Town</span>
+											<form:input path="town" style="width: 250px" type="text" class="form-control"/>
+										</div>
+										<div class="input-group">
+											<span style="width: 100px;" class="input-group-addon">Adress</span>
+											<form:input path="address" style="width: 250px" type="text" class="form-control"/>
+										</div>
+										<hr>
+										<div class="input-group">
+											<span style="width: 100px;" class="input-group-addon">Name</span>
+											<form:input path="name" style="width: 250px" type="text" class="form-control"/>
+										</div>
+										<div class="input-group">
+											<span style="width: 100px;" class="input-group-addon">Phone</span>
+											<form:input path="phone" style="width: 250px" type="text" class="form-control"/>
+										</div>
+										<div class="input-group">
+											<span style="width: 100px;" class="input-group-addon">Email</span>
+											<form:input path="email" style="width: 250px" type="text" class="form-control"/>
+										</div>
+										<hr>
+										<div class="btn-group">
+											<input type="submit" class="btn btn-default" value="Submit"/>
+											<input type="reset" class="btn btn-default" value="Reset"/>
+										</div>
+									</form:form>
 							</div>
 					</div>
-			
-					<form:form method="POST" action="/mediapp/clinicsPanel/addClinic">
-						<table>
-							<tr>
-								<td><form:label path="country">Country</form:label></td>
-								<td><form:input path="country"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="province">Province</form:label></td>
-								<td><form:input path="province"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="town">Town</form:label></td>
-								<td><form:input path="town"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="name">Name</form:label></td>
-								<td><form:input path="name"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="address">Address</form:label></td>
-								<td><form:input path="address"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="phone">Phone</form:label></td>
-								<td><form:input path="phone"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="email">Email</form:label></td>
-								<td><form:input path="email"/></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<input type="submit" value="Submit"/>
-							</tr>
-						</table>
-					</form:form>
 			</div>
-		
 			<div id="searchForm" style="display:none;">
-			<h3>Search Clinics</h3>
-				<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
-					<table>
-						<tr>
-							<td><form:label path="country">Country</form:label></td>
-							<td><form:input path="country"/></td>
-						</tr>
-						<tr>
-							<td><form:label path="province">Province</form:label></td>
-							<td><form:input path="province"/></td>
-						</tr>
-						<tr>
-							<td><form:label path="town">Town</form:label></td>
-							<td><form:input path="town"/></td>
-						</tr>
-						<tr>
-							<td><form:label path="name">Name</form:label></td>
-							<td><form:input path="name"/></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<input type="submit" value="Search"/>
-						</tr>
-					</table>
-				</form:form>
-			</div>
-			</div>
+				<div class="panel panel-default">
+					<div class="panel-heading"><h4>Search Clinics</h4></div>
+						<div class="panel-body">
+								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
+									<div class="input-group">
+										<span style="width: 100px;" class="input-group-addon">Country</span>
+										<form:input path="country" style="width: 250px;" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span style="width: 100px;" class="input-group-addon">Province</span>
+										<form:input path="province" style="width: 250px" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span style="width: 100px;" class="input-group-addon">Town</span>
+										<form:input path="town" style="width: 250px" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span style="width: 100px;" class="input-group-addon">Name</span>
+										<form:input path="name" style="width: 250px" type="text" class="form-control"/>
+									</div>
+									<hr>
+									<div class="btn-group">
+										<input type="submit" class="btn btn-default" value="Submit"/>
+									</div>
+								</form:form>
+							</div>
+						</div>
+				</div>
+			
 		</div>
 	</div>
 <hr>

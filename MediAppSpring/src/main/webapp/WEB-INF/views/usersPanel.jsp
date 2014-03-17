@@ -7,10 +7,10 @@
 
 <html>
 <head>
-	<title>Bootstrap 101 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">	
+	<meta charset="utf-8">
+	<title>MediApp Home</title>
+	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
+
 </head>
 <body>
 
@@ -48,82 +48,91 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Actions</h4></div>
 					<div class="panel-body">
-						<ul class="nav nav-list">
-							<li class="nav-header">Actions</li>
-							<li class="active"><a id="createUser" href="">Create User</a></li>
-							<li><a id="searchUser" href="">Search Users</a></li>
-						</ul>
+						<div class="list-group">
+							<a class="list-group-item" id="createUser" href="">Create User</a>
+							<a class="list-group-item" id="searchUser" href="">Search Users</a>
+						</div>
 					</div>
 			</div>
 		</div>
 		<div class="col-md-9">
-			<div class="jumbotron">
-				<div id="createForm">
-				<h4>Create User</h4>
-					<form:form method="POST" action="/mediapp/usersPanel/addUser">
-						<table>
-							<tr>
-								<td><form:label path="name">Name</form:label></td>
-								<td><form:input path="name"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="address">Address</form:label></td>
-								<td><form:input path="address"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="phone">Phone</form:label></td>
-								<td><form:input path="phone"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="email">Email</form:label></td>
-								<td><form:input path="email"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="password">Password</form:label></td>
-								<td><form:input type="password" path="password"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="type">User Type</form:label></td>		
-								<td>
-									<form:select path="type">
-										<option value="GP" selected>GP</option>
-										<option value="Consultant" selected>Consultant</option>
-										<option value="Admin" selected>Administrator</option>
-									</form:select>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-								<input type="submit" value="Submit"/>
-							</tr>
-						</table>
-					</form:form>
+			<div id="createForm">
+				<div class="panel panel-default">
+				<div class="panel-heading"><h4>Create User</h4></div>
+					<div class="panel-body">
+						<form:form method="POST" action="/mediapp/usersPanel/addUser">
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Name</span>
+								<form:input path="name" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Address</span>
+								<form:input path="address" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Phone</span>
+								<form:input path="phone" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Email</span>
+								<form:input path="email" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Password</span>
+								<form:input path="password" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<hr>							
+							<div class="btn-group">
+							  <form:radiobutton path="type" label="Administrator" class="btn btn-default" value="Administrator"></form:radiobutton>
+							  <br>
+							  <form:radiobutton path="type" label="GP" class="btn btn-default" value="GP"></form:radiobutton>
+							  <br>
+							  <form:radiobutton path="type" label="Consultant" class="btn btn-default" value="Consultant"></form:radiobutton>
+							</div>
+									
+							<hr>
+							<div class="btn-group">
+								<input type="submit" class="btn btn-default" value="Submit"/>
+								<input type="reset" class="btn btn-default" value="Reset"/>
+							</div>
+						</form:form>
+					</div>
+				</div>
 			</div>
 		
-			<div id="searchForm" style="display:none;">
-			<h4>Search Users</h4>
-			<form:form method="POST" action="/mediapp/usersPanel/userSearchResults">
-				<table>
-					<tr>
-						<td><form:label path="id">ID</form:label></td>
-						<td><form:input path="id"/></td>
-					</tr>
-					<tr>
-						<td><form:label path="name">Name</form:label></td>
-						<td><form:input path="name"/></td>
-					</tr>
-					<tr>
-						<td><form:label path="email">Email</form:label></td>
-						<td><form:input path="email"/></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<input type="submit" value="Search"/>
-					</tr>
-				</table>
-			</form:form>
+		
+			<div id="searchForm" style="display:none;">			
+			<div class="panel panel-default">
+				<div class="panel-heading"><h4>Search Users</h4></div>
+					<div class="panel-body">
+						<form:form method="POST" action="/mediapp/usersPanel/userSearchResults">
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">ID</span>
+								<form:input path="id" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Name</span>
+								<form:input path="name" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<div class="input-group">
+								<span style="width: 100px;" class="input-group-addon">Email</span>
+								<form:input path="email" style="width: 250px;" type="text" class="form-control"/>
+							</div>
+							<hr>							
+							<div class="btn-group">
+								<input type="submit" class="btn btn-default" value="Submit"/>
+								<input type="reset" class="btn btn-default" value="Reset"/>
+							</div>
+						</form:form>
+					</div>
+				</div>
 			</div>
-			</div>
+			
+			<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" data-aria-hidden="true">&times;</button>
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</div>
+			
 		</div>
 	</div>
 <hr>
