@@ -63,7 +63,7 @@ String that = "hello";
 	      <ul class="nav navbar-nav">
 	        <li><a href="/mediapp/usersPanel">User Panel</a></li>
 	        <li class="active"><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
-	        <li><a href="#">Logout</a></li>	
+	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>	
 	      </ul>
 	    </div>
 	  </div>

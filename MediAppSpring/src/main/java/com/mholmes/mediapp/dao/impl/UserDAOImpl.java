@@ -28,15 +28,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public void createUser(String name, String type, String address, String phone, String email, String password) {
+	public void createUser(String name, String type, String address, String phone, String email, String password, int enabled) {
 
 			System.out.println("*~[Adding user to DB]~*");
 			
-			String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD)" +
-						" values (?, ?, ?, ?, ?, ?)";
+			String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD, ENABLED)" +
+						" values (?, ?, ?, ?, ?, ?, ?);"
+						+ "insert into authorities (USER_ID, AUTHORITY)" +
+						" values (?, ?)";
 			try{
 			getJdbcTemplate().update(SQL, new Object[] {
-							name, type, address, phone, email, password});
+							name, type, address, phone, email, password, enabled});
 			}
 			catch(Exception e){
 				e.printStackTrace();

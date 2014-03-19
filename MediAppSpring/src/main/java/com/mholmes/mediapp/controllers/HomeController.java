@@ -78,7 +78,7 @@ public class HomeController {
 		System.out.println(user.getPassword());
 		
 		userService = (UserService)services.getBean("UserService");
-		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword());
+		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword(), 1);
 		
 		return new ModelAndView("usersPanel", "command", new User());
 	}
