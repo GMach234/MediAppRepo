@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mholmes.mediapp.dao.impl.UserDAOImpl;
 import com.mholmes.mediapp.domain.Clinic;
 import com.mholmes.mediapp.domain.User;
+import com.mholmes.mediapp.domain.UserSearch;
 import com.mholmes.mediapp.service.ClinicService;
 import com.mholmes.mediapp.service.UserService;
 
@@ -41,59 +45,72 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
-		return new ModelAndView("usersPanel", "command", new User());
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("User", new User());
+		
+		return new ModelAndView("usersPanel", map);
 	}
 	
 	@RequestMapping(value = "/controlPanel", method = RequestMethod.GET)
-	public ModelAndView controlPanel(Locale locale, Model model) {		
-		return new ModelAndView("usersPanel", "command", new User());
+	public ModelAndView controlPanel(Locale locale, Model model) {	
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("User", new User());
+		
+		return new ModelAndView("usersPanel", map);
 	}
 	
 	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
 	public ModelAndView usersPanel(ModelMap model) {
 		
+		ModelMap map = new ModelMap();
+		map.addAttribute("User", new User());
 		
-		
-		return new ModelAndView("usersPanel", "command", new User());
+		return new ModelAndView("usersPanel", map);
 	}
 	
 	@RequestMapping(value = "/usersPanel/addUser", method = RequestMethod.POST)
-	public ModelAndView addUser(@ModelAttribute User user, ModelMap model) {
+	public ModelAndView addUser(@ModelAttribute("User") @Valid User user, BindingResult result, ModelMap model) {
 		
-		System.out.println(user.getName());
-		System.out.println(user.getAddress());
-		System.out.println(user.getPhone());
-		System.out.println(user.getEmail());
-		System.out.println(user.getType());
-		System.out.println(user.getPassword());
+		ModelMap map = new ModelMap();
+		map.addAttribute("User", new User());
 		
-		model.put("error", "Invalid Form Input");
+		if(result.hasErrors()) {
+			return new ModelAndView("usersPanel", map);
+		}
 		
 		userService = (UserService)services.getBean("UserService");
 		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword(), 1);
 		
-		return new ModelAndView("usersPanel", "command", new User());
+		return new ModelAndView("usersPanel", map);
 	}
 	
 	@RequestMapping(value = "/usersPanel/userSearchResults", method = RequestMethod.POST)
-	public String searchResultsRs(@ModelAttribute User user, ModelMap model) {
+	public ModelAndView searchResultsRs(@ModelAttribute("Userh") User user, BindingResult result, ModelMap model) {
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("User", new User());
+		
+		if(result.hasErrors()) {
+			return new ModelAndView("usersPanel", map);
+		}
+		
+		try  
+		  {  
+		    Integer.parseInt(user.getId());  
+		  }  
+		  catch(NumberFormatException nfe)  
+		  {  
+		    user.setId("0");  
+		  }   
 		
 		userService = (UserService)services.getBean("UserService");
-		List<User> users = userService.listUsers(user.getId(), user.getName(), user.getEmail()); 
-
-		for(int i = 0; i<users.size(); i++) {
-			System.out.println(users.get(i).getId());
-			System.out.println(users.get(i).getName());
-			System.out.println(users.get(i).getAddress());
-			System.out.println(users.get(i).getPhone());
-			System.out.println(users.get(i).getEmail());
-			System.out.println(users.get(i).getPassword());
-			System.out.println(users.get(i).getType());
-		}
+		List<User> users = userService.listUsers(Integer.parseInt(user.getId()), user.getName(), user.getEmail()); 
 		
 		model.addAttribute("users", users);
 		
-		return "listUsers";
+		return new ModelAndView("listUsers");
 	}
 	
 	@RequestMapping(value = "/usersPanel/showUser/{user.id}", method = RequestMethod.GET)
@@ -111,7 +128,7 @@ public class HomeController {
 	public ModelAndView removeUser(@ModelAttribute User user, ModelMap model) {
 		
 		userService = (UserService)services.getBean("UserService");
-		userService.removeUser(user.getId());
+		userService.removeUser(Integer.parseInt(user.getId()));
 		
 		return new ModelAndView("usersPanel", "command", new User());
 	}

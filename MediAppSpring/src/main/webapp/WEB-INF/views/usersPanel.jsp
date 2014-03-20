@@ -12,6 +12,13 @@
 	<title>MediApp Home</title>
 	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
 
+	<style>
+	.input-group-addon {
+    min-width:100px;// if you want width please write here //
+    text-align:left;
+	}
+	</style>
+
 </head>
 <body>
 
@@ -61,27 +68,33 @@
 				<div class="panel panel-default">
 				<div class="panel-heading"><h4>Create User</h4></div>
 					<div class="panel-body">
-						<form:form method="POST" action="/mediapp/usersPanel/addUser">
+						<hr>
+						<form:form method="POST" action="/mediapp/usersPanel/addUser" modelAttribute="User">
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Name</span>
-								<form:input path="name" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">Name</span>
+								<form:input path="name" type="text" class="form-control"/>
 							</div>
+							<form:errors path="name" class="label label-warning"></form:errors>							
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Address</span>
-								<form:input path="address" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">Address</span>
+								<form:input path="address"  type="text" class="form-control"/>								
 							</div>
+							<form:errors path="address" class="label label-warning"></form:errors>
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Phone</span>
-								<form:input path="phone" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">Phone</span>
+								<form:input path="phone" type="text" class="form-control"/>
 							</div>
+							<form:errors path="phone" class="label label-warning"></form:errors>
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Email</span>
-								<form:input path="email" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">Email</span>
+								<form:input path="email" type="text" class="form-control"/>								
 							</div>
+							<form:errors path="email" class="label label-warning"></form:errors>
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Password</span>
-								<form:input path="password" style="width: 250px;" type="password" class="form-control"/>
+								<span class="input-group-addon">Password</span>
+								<form:input path="password"  type="password" class="form-control"/>								
 							</div>
+							<form:errors path="password" class="label label-warning"></form:errors>
 							<hr>							
 							<div class="btn-group">
 							  <form:radiobutton path="type" label="Administrator" class="btn btn-default" value="Admin"></form:radiobutton>
@@ -90,12 +103,13 @@
 							  <br>
 							  <form:radiobutton path="type" label="Consultant" class="btn btn-default" value="Consultant"></form:radiobutton>
 							</div>
+							<form:errors path="type" class="label label-warning"></form:errors>
 									
 							<hr>
 							<div class="btn-group">
 								<input type="submit" class="btn btn-default" value="Submit"/>
 								<input type="reset" class="btn btn-default" value="Reset"/>
-							</div>
+							</div>							
 						</form:form>
 					</div>
 				</div>
@@ -106,27 +120,31 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Search Users</h4></div>
 					<div class="panel-body">
-						<form:form method="POST" action="/mediapp/usersPanel/userSearchResults">
+						<hr>
+						<form:form method="POST" action="/mediapp/usersPanel/userSearchResults" modelAttribute="User">
+							<form:errors path="name" class="label label-warning"></form:errors>
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">ID</span>
-								<form:input path="id" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">Name</span>
+								<form:input path="name" type="text" class="form-control"/>
 							</div>
+							<form:errors path="id" class="label label-warning"></form:errors>
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Name</span>
-								<form:input path="name" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">ID</span>
+								<form:input path="id" type="text" class="form-control"/>
 							</div>
+							<form:errors path="email" class="label label-warning"></form:errors>
 							<div class="input-group">
-								<span style="width: 100px;" class="input-group-addon">Email</span>
-								<form:input path="email" style="width: 250px;" type="text" class="form-control"/>
+								<span class="input-group-addon">Email</span>
+								<form:input path="email" type="text" class="form-control"/>
 							</div>
-							<hr>							
+							<hr>
 							<div class="btn-group">
-								<input type="submit" class="btn btn-default" value="Submit"/>
+								<input type="submit" class="btn btn-default" value="Search"/>
 								<input type="reset" class="btn btn-default" value="Reset"/>
-							</div>
+							</div>	
 						</form:form>
 					</div>
-				</div>
+				</div>				
 			</div>			
 		</div>
 	</div>

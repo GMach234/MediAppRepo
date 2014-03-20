@@ -11,7 +11,7 @@ public class UserMapper implements RowMapper<User> {
 
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		User user = new User();
-		user.setId(rs.getInt("user_id"));
+		user.setId(rs.getString("user_id"));
 		user.setName(rs.getString("name"));
 		user.setAddress(rs.getString("address"));
 		user.setPhone(rs.getString("phone"));
