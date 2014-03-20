@@ -9,8 +9,9 @@
 	<http auto-config="true">
 		<intercept-url pattern="/*" access="ROLE_ADMIN" />
 		<form-login login-page="/auth/login" default-target-url="/controlPanel"
-			authentication-failure-url="/auth/denied" />
+			authentication-failure-url="/auth/failure"/>
 		<logout logout-success-url="/auth/logout" />
+		<access-denied-handler error-page="/auth/denied"/>
 	</http>
  
 	<authentication-manager>
@@ -26,9 +27,7 @@
 		      where u.user_id = ur.user_id and u.user_id =?  "
 		      
 		/>
-		
-
-		
+	
 	  </authentication-provider>
 	</authentication-manager>
  

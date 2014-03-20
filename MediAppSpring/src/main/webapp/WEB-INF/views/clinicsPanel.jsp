@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 	<%@ page import="java.sql.*" %> 
 	<%@ page import="java.io.*" %> 
 
@@ -42,7 +43,7 @@ String that = "hello";
 
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User ID: <sec:authentication property="principal.username"/></span></a></h1>
 
 
 <!-- NavBar -->

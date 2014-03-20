@@ -39,30 +39,20 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	public ModelAndView home(Locale locale, Model model) {
+		return new ModelAndView("usersPanel", "command", new User());
 	}
 	
 	@RequestMapping(value = "/controlPanel", method = RequestMethod.GET)
-	public String controlPanel(Locale locale, Model model) {		
-		return "controlPanel";
+	public ModelAndView controlPanel(Locale locale, Model model) {		
+		return new ModelAndView("usersPanel", "command", new User());
 	}
 	
 	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
-	public ModelAndView usersPanel() {
+	public ModelAndView usersPanel(ModelMap model) {
+		
+		
 		
 		return new ModelAndView("usersPanel", "command", new User());
 	}
@@ -76,6 +66,8 @@ public class HomeController {
 		System.out.println(user.getEmail());
 		System.out.println(user.getType());
 		System.out.println(user.getPassword());
+		
+		model.put("error", "Invalid Form Input");
 		
 		userService = (UserService)services.getBean("UserService");
 		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword(), 1);

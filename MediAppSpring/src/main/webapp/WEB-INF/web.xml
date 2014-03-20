@@ -57,7 +57,7 @@
 	</context-param>
     
     <welcome-file-list>
-        <welcome-file>/WEB-INF/controlPanel.jsp</welcome-file>
+        <welcome-file>/WEB-INF/usersPanel.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

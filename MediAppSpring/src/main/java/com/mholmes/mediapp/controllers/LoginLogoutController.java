@@ -22,14 +22,6 @@ public class LoginLogoutController {
    ModelMap model) {
   logger.debug("Received request to show login page");
  
-  // Add an error message to the model if login is unsuccessful
-  // The 'error' parameter is set to true based on the when the authentication has failed. 
-  // We declared this under the authentication-failure-url attribute inside the spring-security.xml
-  /* See below:
-   <form-login 
-    login-page="/krams/auth/login" 
-    authentication-failure-url="/krams/auth/login?error=true" 
-    default-target-url="/krams/main/common"/>*/
   if (error == true) {
    // Assign an error message
    model.put("error", "You have entered an invalid username or password!");
@@ -37,25 +29,25 @@ public class LoginLogoutController {
    model.put("error", "");
   }
    
-  // This will resolve to /WEB-INF/jsp/loginpage.jsp
   return "loginpage";
  }
-  
- /**
-  * Handles and retrieves the denied JSP page. This is shown whenever a regular user
-  * tries to access an admin only page.
-  * 
-  * @return the name of the JSP page
-  */
- @RequestMapping(value = "/denied", method = RequestMethod.GET)
-  public String getDeniedPage(ModelMap model) {
+
+ @RequestMapping(value = "/failure", method = RequestMethod.GET)
+  public String getFailureError(ModelMap model) {
   logger.debug("Received request to show denied page");
    
-  model.addAttribute("error", "true");
+  model.addAttribute("error", "Invalid Credentials");
   
-  // This will resolve to /WEB-INF/jsp/deniedpage.jsp
   return "loginpage";
  }
+ @RequestMapping(value = "/denied", method = RequestMethod.GET)
+ public String getDeniedError(ModelMap model) {
+ logger.debug("Received request to show denied page");
+  
+ model.addAttribute("error", "Access Denied for User ID");
+ 
+ return "loginpage";
+}
  
  @RequestMapping(value = "/logout", method = RequestMethod.GET)
  public String logout() {

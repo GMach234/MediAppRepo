@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 
@@ -15,7 +16,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User ID: <sec:authentication property="principal.username"/></span></a></h1>
 
 <!-- NavBar -->
 	<nav class="navbar navbar-default" role="navigation">
@@ -35,7 +36,7 @@
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a href="/mediapp/usersPanel">User Panel</a></li>
 	        <li><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
-	        <li><a href="#">Logout</a></li>	
+	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -79,7 +80,7 @@
 							</div>
 							<div class="input-group">
 								<span style="width: 100px;" class="input-group-addon">Password</span>
-								<form:input path="password" style="width: 250px;" type="text" class="form-control"/>
+								<form:input path="password" style="width: 250px;" type="password" class="form-control"/>
 							</div>
 							<hr>							
 							<div class="btn-group">
@@ -126,13 +127,7 @@
 						</form:form>
 					</div>
 				</div>
-			</div>
-			
-			<div class="alert alert-success alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" data-aria-hidden="true">&times;</button>
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</div>
-			
+			</div>			
 		</div>
 	</div>
 <hr>
