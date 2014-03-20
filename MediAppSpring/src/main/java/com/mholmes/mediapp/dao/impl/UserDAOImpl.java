@@ -32,13 +32,30 @@ public class UserDAOImpl implements UserDAO {
 
 			System.out.println("*~[Adding user to DB]~*");
 			
-			String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD, ENABLED)" +
+			String role;
+			if(type.equals("Admin")) {
+				role = "ROLE_ADMIN";
+			} else {
+				role = "ROLE_USER";
+			}
+			
+			/*String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD, ENABLED)" +
 						" values (?, ?, ?, ?, ?, ?, ?);"
 						+ "insert into authorities (USER_ID, AUTHORITY)" +
-						" values (?, ?)";
+						" values (select user_id from users where user_id = (select MAX(user_id) from users), 'ROLE_ADMIN')";
+			*/
+			String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD, ENABLED)" 
+			+ "values (?, ?, ?, ?, ?, ?, ?);";
+			String SQL1 = "insert into authorities (USER_ID) SELECT user_id from users "
+			+ "where user_id = (select MAX(user_id) from users);";
+			String SQL2 = "update authorities set authority = '"+role+"'"
+					+ " where user_id = (select MAX(user_id) from users)";
+			
 			try{
 			getJdbcTemplate().update(SQL, new Object[] {
 							name, type, address, phone, email, password, enabled});
+			getJdbcTemplate().execute(SQL1);
+			getJdbcTemplate().execute(SQL2);
 			}
 			catch(Exception e){
 				e.printStackTrace();

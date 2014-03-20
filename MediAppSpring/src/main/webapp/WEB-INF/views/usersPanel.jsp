@@ -83,7 +83,7 @@
 							</div>
 							<hr>							
 							<div class="btn-group">
-							  <form:radiobutton path="type" label="Administrator" class="btn btn-default" value="Administrator"></form:radiobutton>
+							  <form:radiobutton path="type" label="Administrator" class="btn btn-default" value="Admin"></form:radiobutton>
 							  <br>
 							  <form:radiobutton path="type" label="GP" class="btn btn-default" value="GP"></form:radiobutton>
 							  <br>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2014 at 08:29 PM
+-- Generation Time: Mar 20, 2014 at 11:34 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.4.22
 
@@ -23,6 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `authorities`
+--
+
+CREATE TABLE IF NOT EXISTS `authorities` (
+  `user_id` varchar(50) NOT NULL,
+  `authority` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `authorities`
+--
+
+INSERT INTO `authorities` (`user_id`, `authority`) VALUES
+('7', 'ROLE_ADMIN'),
+('33', 'ROLE_ADMIN'),
+('34', 'ROLE_ADMIN'),
+('35', 'ROLE_ADMIN'),
+('36', 'ROLE_USER'),
+('37', 'ROLE_ADMIN'),
+('38', 'ROLE_USER');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `clinics`
 --
 
@@ -36,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `clinics` (
   `phone` varchar(30) NOT NULL,
   `email` text,
   PRIMARY KEY (`clinic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `clinics`
@@ -49,7 +73,8 @@ INSERT INTO `clinics` (`clinic_id`, `country`, `province`, `town`, `name`, `addr
 (4, 'Ireland', 'Limerick', 'Limerick', 'Limerick Clinic', 'Limerick Avenue', '193746825', 'stabclinic@gmail.com'),
 (5, 'Ireland', 'Dublin', 'Dublin', 'Dublin Clinic', 'Road House, Road Street', '0862126410', 'dublinclinic@gmail.com'),
 (6, 'England', 'Durham', 'Darlington', 'Darlington clinic', 'Clinic Road, Darlo District', '063250685', 'darlingtonclinic@gmail.com'),
-(7, 'Ireland', 'Cork', 'Cork1', 'cork clinicq', 'street', '12345', 'g@g.com');
+(7, 'Ireland', 'Cork', 'Cork1', 'cork clinicq', 'street', '12345', 'g@g.com'),
+(10, 'Ireland', 'Dublin', 'Dublin ', 'Michael Johannes Clinic Emporium', '8 Dublin Quay, Dublin Avenue', '12345654321', 'mjEmporium@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -111,25 +136,34 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(30) NOT NULL,
   `password` text NOT NULL,
   `clinic_id` int(10) DEFAULT NULL,
+  `enabled` varchar(1) NOT NULL,
   PRIMARY KEY (`user_id`),
   KEY `clinicId` (`clinic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `user_type`, `address`, `phone`, `email`, `password`, `clinic_id`) VALUES
-(1, 'aaa', 'GP', 'aaa', 234, 'sdf', '23e', NULL),
-(2, 'Michael Holmes', 'GP', '123 fake street', 645935, 'michael@michael.com', 'myPassword', NULL),
-(7, 'Michael Holmes', 'GP', 'Main Street', 12345, 'michaelholmes@gmail.com', 'password123', NULL),
-(9, 'John Doe', 'Admin', 'Nowhere', 454545, 'mystery@hollywood.com', 'allstars', NULL),
-(10, 'Bob Jelly', 'GP', 'My House, something street', 123123123, 'coolhouse@somewhere.com', 'nopassword', NULL),
-(11, 'Jerry Springer', 'Consultant', 'Studio House', 888888, 'sillyshow@tv.com', 'jerryjerry', NULL),
-(12, 'Susan Scofield', 'Admin', 'Warzone avenue', 7676667, 'conflict@house.com', 'thamesriver', NULL),
-(13, 'Cora Hayes', 'GP', 'Cobh', 123456789, 'corahayes@gmail.com', 'corapassword', NULL),
-(14, 'Berry Power', 'Consultant', 'House Street', 87654321, 'berrypower@gmail.com', 'berrybush123', NULL),
-(15, 'Michael', 'Admin', 'House', 123, 'Gmach223@gmal.com', '123', NULL);
+INSERT INTO `users` (`user_id`, `name`, `user_type`, `address`, `phone`, `email`, `password`, `clinic_id`, `enabled`) VALUES
+(1, 'aaa', 'GP', 'aaa', 234, 'sdf', '23e', NULL, '1'),
+(2, 'Michael Holmes', 'GP', '123 fake street', 645935, 'michael@michael.com', 'myPassword', NULL, '1'),
+(7, 'Michael Holmes', 'GP', 'Main Street', 12345, 'michaelholmes@gmail.com', 'password123', NULL, '1'),
+(9, 'John Doe', 'Admin', 'Nowhere', 454545, 'mystery@hollywood.com', 'allstars', NULL, '1'),
+(10, 'Bob Jelly', 'GP', 'My House, something street', 123123123, 'coolhouse@somewhere.com', 'nopassword', NULL, '1'),
+(11, 'Jerry Springer', 'Consultant', 'Studio House', 888888, 'sillyshow@tv.com', 'jerryjerry', NULL, '1'),
+(12, 'Susan Scofield', 'Admin', 'Warzone avenue', 7676667, 'conflict@house.com', 'thamesriver', NULL, '1'),
+(13, 'Cora Hayes', 'GP', 'Cobh', 123456789, 'corahayes@gmail.com', 'corapassword', NULL, '1'),
+(14, 'Berry Power', 'Consultant', 'House Street', 87654321, 'berrypower@gmail.com', 'berrybush123', NULL, '1'),
+(15, 'Michael', 'Admin', 'House', 123, 'Gmach223@gmal.com', '123', NULL, '1'),
+(16, 'admin', 'Admin', '9 Fenr', 123213, 'admin@admin.com', '', NULL, '1'),
+(17, 'yyy', 'GP', 'yyy', 111, 'yyy', 'yyy', NULL, '1'),
+(33, 'Ben', 'GP', 'Ben', 345, 'ben@ben.com', 'ben', NULL, '1'),
+(34, 'Joe', 'GP', 'Joe Street', 1234, 'joe@gmail.com', 'joe', NULL, '1'),
+(35, 'Greta', 'GP', 'Greta Street ', 666, 'greta@gmail.com', 'greta', NULL, '1'),
+(36, 'GuestUser', 'GP', 'Nowhere', 123, 'gmail@gmail.com', 'guest', NULL, '1'),
+(37, 'AdminUser', 'Admin', 'admin', 123, 'admin@admin.com', 'admin', NULL, '1'),
+(38, 'UserUser', 'Consultant', 'user', 123, 'user@user.com', 'user', NULL, '1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
