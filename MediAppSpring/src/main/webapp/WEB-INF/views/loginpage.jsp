@@ -25,9 +25,10 @@
 </style>
 </head>
 <body onload='document.f.j_username.focus();'>	
-	
+
+<div class="container">	
 <div class="col-md-3"></div>	
-<div class="container">
+
 <div class="col-md-6 margin-base-vertical">
 	<h2 class="margin-base-vertical">Mediapp Login</h2>
 		<div class="jumbotron">	
@@ -57,8 +58,8 @@
 			</div>
 		</div>
 </div>  
-</div>
  <div class="col-md-3"></div>
+</div>	
 	
 	
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>

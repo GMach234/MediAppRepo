@@ -13,7 +13,7 @@ public class User implements Serializable {
 
 	@Digits(message="ID field must contain only numbers", fraction = 0, integer = 10)
 	String id;
-	@NotEmpty(message="Name cannot be blank") @Size(min=1, max=50, message="Name must be between 1-50 characters")
+	@NotEmpty(message="Name cannot be blank") @Size(min=2, max=50, message="Name must be between 1-50 characters")
 	String name;
 	@NotNull(message="A User Type must be selected")
 	String type;

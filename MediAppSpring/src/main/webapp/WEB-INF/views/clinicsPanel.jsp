@@ -97,7 +97,7 @@ String that = "hello";
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4>Create Clinic</h4></div>
 							<div class="panel-body">
-								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic" modelAttribute="Clinic">
+								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic" modelAttribute="Clinic">								
 										<div class="input-group">
 											<span class="input-group-addon">Country</span>
 											<form:input path="country" type="text" class="form-control"/>
@@ -144,7 +144,16 @@ String that = "hello";
 				<div class="panel panel-default">
 					<div class="panel-heading"><h4>Search Clinics</h4></div>
 						<div class="panel-body">
-								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
+								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
+									<div class="input-group">
+										<span class="input-group-addon">ID</span>
+										<form:input path="id" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">Email</span>
+										<form:input path="email" type="text" class="form-control"/>
+									</div>
+									<hr>
 									<div class="input-group">
 										<span class="input-group-addon">Country</span>
 										<form:input path="country" type="text" class="form-control"/>
@@ -164,7 +173,12 @@ String that = "hello";
 									<hr>
 									<div class="btn-group">
 										<input type="submit" class="btn btn-default" value="Submit"/>
+										<input type="reset" class="btn btn-default" value="Reset"/>
 									</div>
+								</form:form>
+								<hr>
+								<form:form method="POST" action="/mediapp/clinicsPanel/showAllClinics" modelAttribute="Clinic">
+									<input type="submit" class="btn btn-default" value="View All Clinics"/>
 								</form:form>
 							</div>
 						</div>

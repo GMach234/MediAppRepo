@@ -68,7 +68,6 @@
 				<div class="panel panel-default">
 				<div class="panel-heading"><h4>Create User</h4></div>
 					<div class="panel-body">
-						<hr>
 						<form:form method="POST" action="/mediapp/usersPanel/addUser" modelAttribute="User">
 							<div class="input-group">
 								<span class="input-group-addon">Name</span>
@@ -115,12 +114,10 @@
 				</div>
 			</div>
 		
-		
 			<div id="searchForm" style="display:none;">			
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Search Users</h4></div>
 					<div class="panel-body">
-						<hr>
 						<form:form method="POST" action="/mediapp/usersPanel/userSearchResults" modelAttribute="User">
 							<div class="input-group">
 								<span class="input-group-addon">Name</span>
@@ -140,6 +137,11 @@
 								<input type="reset" class="btn btn-default" value="Reset"/>
 							</div>	
 						</form:form>
+						<hr>
+						<form:form method="POST" action="/mediapp/usersPanel/showAllUsers" modelAttribute="Clinic">
+							<input type="submit" class="btn btn-default" value="View All Users"/>
+						</form:form>
+						
 					</div>
 				</div>				
 			</div>			

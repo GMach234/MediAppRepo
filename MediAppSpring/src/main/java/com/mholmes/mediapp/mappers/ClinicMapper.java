@@ -11,7 +11,7 @@ public class ClinicMapper implements RowMapper<Clinic> {
 
 	public Clinic mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Clinic clinic = new Clinic();
-		clinic.setId(rs.getInt("clinic_id"));
+		clinic.setId(rs.getString("clinic_id"));
 		clinic.setName(rs.getString("name"));
 		clinic.setCountry(rs.getString("country"));
 		clinic.setProvince(rs.getString("province"));

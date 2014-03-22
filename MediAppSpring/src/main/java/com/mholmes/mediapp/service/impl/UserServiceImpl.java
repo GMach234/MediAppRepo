@@ -24,12 +24,17 @@ private UserDAO userDAO;
 	}
 
 	@Override
-	public List<User> listUsers(int id, String name, String email){
-		return userDAO.listUsers(id, name, email);
+	public List<User> searchUsers(int id, String name, String email){
+		return userDAO.searchUsers(id, name, email);
 	}
 
 	public void removeUser(int id) {
 		userDAO.removeUser(id);
+	}
+
+	@Override
+	public List<User> listUsers() {
+		return userDAO.listUsers();
 	}
 	
 	/*@Override

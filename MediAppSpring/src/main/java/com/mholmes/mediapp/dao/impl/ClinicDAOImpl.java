@@ -54,7 +54,7 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	@Override
-	public List<Clinic> listClinics(int id, String name, String email) {
+	public List<Clinic> searchClinics(int id, String name, String email) {
 		
 		String SQL = "select * from clinics where clinic_id = ? or name = ? or email = ?";
 		List<Clinic> clinics = getJdbcTemplate().query(SQL, new Object[]{id, name, email},
@@ -76,7 +76,15 @@ public class ClinicDAOImpl implements ClinicDAO {
 		}
 		
 	}
-	
+
+	@Override
+	public List<Clinic> listClinics() {
+		
+		String SQL = "select * from clinics";
+		List<Clinic> clinics = getJdbcTemplate().query(SQL,new Object[]{}, new ClinicMapper());
+		
+		return clinics;
+	}
 	
 	
 }

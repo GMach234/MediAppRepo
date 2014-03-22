@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class Clinic implements Serializable {
 
-	int id;
+	String id;
 	String country;
 	String province;
 	String town;
@@ -29,10 +29,10 @@ public class Clinic implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getCountry() {

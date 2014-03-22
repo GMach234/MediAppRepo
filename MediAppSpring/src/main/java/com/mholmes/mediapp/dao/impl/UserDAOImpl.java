@@ -69,7 +69,7 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
-	public List<User> listUsers(int id, String name, String email) {
+	public List<User> searchUsers(int id, String name, String email) {
 		
 		String SQL = "select * from users where user_id = ? or name = ? or email = ?";
 		List<User> users = getJdbcTemplate().query(SQL,new Object[]{id, name, email}, new UserMapper());
@@ -87,6 +87,15 @@ public class UserDAOImpl implements UserDAO {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<User> listUsers() {
+		
+		String SQL = "select * from users";
+		List<User> users = getJdbcTemplate().query(SQL,new Object[]{}, new UserMapper());
+		
+		return users;
 	}
 	
 }
