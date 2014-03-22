@@ -13,6 +13,14 @@
 	<meta charset="utf-8">
 	<title>MediApp Home</title>
 	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
+	
+	<style>
+	.input-group-addon {
+    min-width:100px;
+    text-align:left;
+	}
+	</style>
+	
 </head>
 <body>
 
@@ -89,37 +97,40 @@ String that = "hello";
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4>Create Clinic</h4></div>
 							<div class="panel-body">
-								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic">
+								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic" modelAttribute="Clinic">
 										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Country</span>
-											<form:input path="country" style="width: 250px;" type="text" class="form-control"/>
-										</div>
-
-										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Province</span>
-											<form:input path="province" style="width: 250px" type="text" class="form-control"/>
+											<span class="input-group-addon">Country</span>
+											<form:input path="country" type="text" class="form-control"/>
 										</div>
 										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Town</span>
-											<form:input path="town" style="width: 250px" type="text" class="form-control"/>
+											<span class="input-group-addon">Province</span>
+											<form:input path="province" type="text" class="form-control"/>
 										</div>
 										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Adress</span>
-											<form:input path="address" style="width: 250px" type="text" class="form-control"/>
+											<span class="input-group-addon">Town</span>
+											<form:input path="town" type="text" class="form-control"/>
+										</div>	
+										<div class="input-group">
+											<span class="input-group-addon">Address</span>
+											<form:input path="address" type="text" class="form-control"/>
 										</div>
+										<form:errors path="address" class="label label-warning"></form:errors>
 										<hr>
 										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Name</span>
-											<form:input path="name" style="width: 250px" type="text" class="form-control"/>
+											<span class="input-group-addon">Name</span>
+											<form:input path="name" type="text" class="form-control"/>
 										</div>
+										<form:errors path="name" class="label label-warning"></form:errors>
 										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Phone</span>
-											<form:input path="phone" style="width: 250px" type="text" class="form-control"/>
+											<span class="input-group-addon">Phone</span>
+											<form:input path="phone" type="text" class="form-control"/>
 										</div>
+										<form:errors path="phone" class="label label-warning"></form:errors>
 										<div class="input-group">
-											<span style="width: 100px;" class="input-group-addon">Email</span>
-											<form:input path="email" style="width: 250px" type="text" class="form-control"/>
+											<span class="input-group-addon">Email</span>
+											<form:input path="email" type="text" class="form-control"/>
 										</div>
+										<form:errors path="email" class="label label-warning"></form:errors>
 										<hr>
 										<div class="btn-group">
 											<input type="submit" class="btn btn-default" value="Submit"/>
@@ -135,20 +146,20 @@ String that = "hello";
 						<div class="panel-body">
 								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
 									<div class="input-group">
-										<span style="width: 100px;" class="input-group-addon">Country</span>
-										<form:input path="country" style="width: 250px;" type="text" class="form-control"/>
+										<span class="input-group-addon">Country</span>
+										<form:input path="country" type="text" class="form-control"/>
 									</div>
 									<div class="input-group">
-										<span style="width: 100px;" class="input-group-addon">Province</span>
-										<form:input path="province" style="width: 250px" type="text" class="form-control"/>
+										<span class="input-group-addon">Province</span>
+										<form:input path="province" type="text" class="form-control"/>
 									</div>
 									<div class="input-group">
-										<span style="width: 100px;" class="input-group-addon">Town</span>
-										<form:input path="town" style="width: 250px" type="text" class="form-control"/>
+										<span class="input-group-addon">Town</span>
+										<form:input path="town" type="text" class="form-control"/>
 									</div>
 									<div class="input-group">
-										<span style="width: 100px;" class="input-group-addon">Name</span>
-										<form:input path="name" style="width: 250px" type="text" class="form-control"/>
+										<span class="input-group-addon">Name</span>
+										<form:input path="name" type="text" class="form-control"/>
 									</div>
 									<hr>
 									<div class="btn-group">

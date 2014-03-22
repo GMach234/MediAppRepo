@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mholmes.mediapp.dao.impl.UserDAOImpl;
 import com.mholmes.mediapp.domain.Clinic;
 import com.mholmes.mediapp.domain.User;
-import com.mholmes.mediapp.domain.UserSearch;
 import com.mholmes.mediapp.service.ClinicService;
 import com.mholmes.mediapp.service.UserService;
 

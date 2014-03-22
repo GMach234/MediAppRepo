@@ -14,7 +14,7 @@
 
 	<style>
 	.input-group-addon {
-    min-width:100px;// if you want width please write here //
+    min-width:100px;
     text-align:left;
 	}
 	</style>
@@ -122,17 +122,14 @@
 					<div class="panel-body">
 						<hr>
 						<form:form method="POST" action="/mediapp/usersPanel/userSearchResults" modelAttribute="User">
-							<form:errors path="name" class="label label-warning"></form:errors>
 							<div class="input-group">
 								<span class="input-group-addon">Name</span>
 								<form:input path="name" type="text" class="form-control"/>
 							</div>
-							<form:errors path="id" class="label label-warning"></form:errors>
 							<div class="input-group">
 								<span class="input-group-addon">ID</span>
 								<form:input path="id" type="text" class="form-control"/>
 							</div>
-							<form:errors path="email" class="label label-warning"></form:errors>
 							<div class="input-group">
 								<span class="input-group-addon">Email</span>
 								<form:input path="email" type="text" class="form-control"/>
