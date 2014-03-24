@@ -100,16 +100,22 @@ public class UsersPanelController {
 	}
 	
 	@RequestMapping(value = "/showUser/{user.id}", method = RequestMethod.GET)
-	public ModelAndView showUser(@PathVariable("user.id") int id, ModelMap model) {
+	public ModelAndView showUser(@PathVariable("user.id") int id, @ModelAttribute Clinic clinic, ModelMap model) {
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("Clinic", new Clinic());
+		map.addAttribute("User", new User());
 		
 		userService = (UserService)services.getBean("UserService");
 		User user = userService.getUser(id);
 		
-		ModelMap map = new ModelMap();
-		map.addAttribute("User", new User());
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<Clinic> clinics = clinicService.getClinics(id);
+
 		model.addAttribute("user", user);
+		model.addAttribute("clinics", clinics);
 		
-		return new ModelAndView("user", "command", new User());
+		return new ModelAndView("user", map);
 	}
 	
 	@RequestMapping(value = "/removeUser/{user.id}", method = RequestMethod.POST)

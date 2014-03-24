@@ -40,5 +40,10 @@ public class ClinicServiceImpl implements ClinicService {
 		
 		return clinicDAO.listClinics();
 	}
+
+	@Override
+	public List<Clinic> getClinics(int id) {
+		return clinicDAO.getClinics(id);
+	}
 	
 }

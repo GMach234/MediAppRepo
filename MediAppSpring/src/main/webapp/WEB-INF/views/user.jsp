@@ -1,97 +1,162 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html">
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MediApp User View</title>
+	<title>MediApp Home</title>
 	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.css"/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.min.css"/>" type="text/css">
+
+	<style>
+	.input-group-addon {
+    min-width:100px;
+    text-align:left;
+	}
+	</style>
+	
 </head>
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel</a></h1>
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User ID: <sec:authentication property="principal.username"/></span></a></h1>
 
-<div class="navbar">
-	<div class="navbar-inner">
-		<div class="container">
-			<ul class="nav">
-				<li><a href="/mediapp/usersPanel">Users Panel</a></li>
-				<li><a href="/mediapp/clinicsPanel">Clinics Panel</a></li>
-				<li><a href="#">Logout</a>	
-			</ul>
-		</div>
-	</div>
-</div>
-<hr>
-<div class="row">
-	<div class="span4">
-		<ul class="nav nav-list">
-			<li class="nav-header">Actions</li>
-			<li><a href="#">Create User</a></li>
-			<li class="active"><a href="#">Search Users</a></li>
-		</ul>
-	</div>
-	<div class="span8">
-		<div class="hero-unit">	
-		</div>
-	</div>
+<!-- NavBar -->
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">		
+	  
+	  	<div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand">Panels</a>
+	    	</div>
+	  
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="/mediapp/usersPanel">User Panel</a></li>
+	        <li><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+<!-- End NavBar -->	
+
+<!-- Content -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h2>${user.name}</h2></div>
+					<div class="panel-body">
+						
+						<div class="col-md-6">
+						
+							<div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Details</h3>
+							  </div>
+							  <div class="panel-body">
+							  
+							  	<ul class="list-group">
+							  <li class="list-group-item">ID: ${user.id}</li>
+							  <li class="list-group-item">Address: ${user.address}</li>
+							  <li class="list-group-item">Phone: ${user.phone}</li>
+							  <li class="list-group-item">Email: ${user.email}</li>
+							  <li class="list-group-item">Type: ${user.type}</li>
+							</ul>
+							  
+							  </div>
+							</div>
+							
+							<hr>
+							
+							<div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Clinics</h3>
+							  </div>
+							  <div class="panel-body">
+							  
+							  <c:forEach items="${clinics}" var="clinic">
+
+	<ul class="list-group">
+							  <li class="list-group-item">ID: ${clinic.id}</li>
+							  <li class="list-group-item">Address: ${clinic.country}</li>
+							  <li class="list-group-item">Phone: ${clinic.province}</li>
+							  <li class="list-group-item">Email: ${clinic.town}</li>
+							  <li class="list-group-item">Type: ${clinic.address}</li>
+							  <li class="list-group-item">Type: ${clinic.phone}</li>
+							  <li class="list-group-item">Type: ${clinic.email}</li>
+							</ul>
+
+						</c:forEach>
+							  
+							  
+							  
+							  </div>
+							</div>
+							
+						
+						</div>
+						<div class="col-md-6">
+						
+							<div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Add Clinic</h3>
+							  </div>
+							  <div class="panel-body">
+
+
+								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
+									<div class="input-group">
+										<span class="input-group-addon">Country</span>
+										<form:input path="country" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">Province</span>
+										<form:input path="province" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">Town</span>
+										<form:input path="town" type="text" class="form-control"/>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">Name</span>
+										<form:input path="name" type="text" class="form-control"/>
+									</div>
+									<hr>
+									<div class="btn-group">
+										<input type="submit" class="btn btn-default" value="Add Clinic"/>
+										<input type="reset" class="btn btn-default" value="Reset"/>
+									</div>
+								</form:form>
+
+							  </div>
+							</div>
+						
+						</div>
+						
+									    
 	
-</div>
+						
+					</div>	
+			</div>
+		</div>		
+	</div>
 <hr>
+<!-- End Content -->
 </div>
 
-<h2>${user.name}</h2>
 
-		<p>Name: ${user.name}</p>
-		<p>ID: ${user.id}</p>
-		<p>Address: ${user.address}</p>
-		<p>Phone: ${user.phone}</p>
-		<p>Email: ${user.email}</p>
-		<p>Type: ${user.type}</p>
-		<br>
-
-		<form:form method="POST" action="/mediapp/usersPanel/removeUser">
-			<form:label path="id"></form:label>
-			<form:input path="id" type="hidden" value='${user.id}' />
-			<input type="submit" value="Remove"/>
-		</form:form>
+	
 		
-		
-		<h2>Add Clinic</h2>
-		<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults">
-			<table>
-				<tr>
-					<td><form:label path="country">Country</form:label></td>
-					<td><form:input path="country"/></td>
-				</tr>
-				<tr>
-					<td><form:label path="province">Province</form:label></td>
-					<td><form:input path="province"/></td>
-				</tr>
-				<tr>
-					<td><form:label path="town">Town</form:label></td>
-					<td><form:input path="town"/></td>
-				</tr>
-				<tr>
-					<td><form:label path="name">Name</form:label></td>
-					<td><form:input path="name"/></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="submit" value="Search"/>
-				</tr>
-			</table>
-		</form:form>
-		
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>			
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>		
 </body>
 </html>

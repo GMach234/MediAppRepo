@@ -85,6 +85,16 @@ public class ClinicDAOImpl implements ClinicDAO {
 		
 		return clinics;
 	}
+
+	@Override
+	public List<Clinic> getClinics(int id) {
+		
+		String SQL = "select * from clinics where clinic_id = (select clinic_id from associations where user_id = ?);";
+		List<Clinic> clinics = getJdbcTemplate().query(SQL, new Object[]{id},
+						new ClinicMapper()); 
+				
+		return clinics;
+	}
 	
 	
 }
