@@ -75,33 +75,9 @@
 							  </div>
 							</div>
 							
-							<hr>
 							
-							<div class="panel panel-default">
-							  <div class="panel-heading">
-							    <h3 class="panel-title">Clinics</h3>
-							  </div>
-							  <div class="panel-body">
-							  
-							  <c:forEach items="${clinics}" var="clinic">
-
-	<ul class="list-group">
-							  <li class="list-group-item">ID: ${clinic.id}</li>
-							  <li class="list-group-item">Address: ${clinic.country}</li>
-							  <li class="list-group-item">Phone: ${clinic.province}</li>
-							  <li class="list-group-item">Email: ${clinic.town}</li>
-							  <li class="list-group-item">Type: ${clinic.address}</li>
-							  <li class="list-group-item">Type: ${clinic.phone}</li>
-							  <li class="list-group-item">Type: ${clinic.email}</li>
-							</ul>
-
-						</c:forEach>
-							  
-							  
-							  
-							  </div>
-							</div>
 							
+						
 						
 						</div>
 						<div class="col-md-6">
@@ -149,6 +125,7 @@
 			</div>
 		</div>		
 	</div>
+	
 <hr>
 <!-- End Content -->
 </div>
