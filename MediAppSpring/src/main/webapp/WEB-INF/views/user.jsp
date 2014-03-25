@@ -50,82 +50,101 @@
 <!-- End NavBar -->	
 
 <!-- Content -->
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading"><h2>${user.name}</h2></div>
-					<div class="panel-body">
-						
+	
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>${user.name}</h2></div>
+				<div class="panel-body">
+					<div class="row">	
 						<div class="col-md-6">
-						
 							<div class="panel panel-default">
-							  <div class="panel-heading">
-							    <h3 class="panel-title">Details</h3>
-							  </div>
-							  <div class="panel-body">
-							  
-							  	<ul class="list-group">
-							  <li class="list-group-item">ID: ${user.id}</li>
-							  <li class="list-group-item">Address: ${user.address}</li>
-							  <li class="list-group-item">Phone: ${user.phone}</li>
-							  <li class="list-group-item">Email: ${user.email}</li>
-							  <li class="list-group-item">Type: ${user.type}</li>
-							</ul>
-							  
-							  </div>
+							<div class="panel-heading">
+							<h3 class="panel-title">Details</h3>
+							</div>
+								<div class="panel-body">
+								 <ul class="list-group">
+								 <li class="list-group-item">ID: ${user.id}</li>
+								 <li class="list-group-item">Address: ${user.address}</li>
+								 <li class="list-group-item">Phone: ${user.phone}</li>
+								 <li class="list-group-item">Email: ${user.email}</li>
+								 <li class="list-group-item">Type: ${user.type}</li>
+								 </ul>
+							  	</div>
+							</div>
+						</div> <!-- End col-md-6 -->
+						<div class="col-md-6">
+							<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Add Clinic Association</h3>
+							</div>
+								<div class="panel-body">
+									<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
+										<div class="input-group">
+											<span class="input-group-addon">Country</span>
+											<form:input path="country" type="text" class="form-control"/>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Province</span>
+											<form:input path="province" type="text" class="form-control"/>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Town</span>
+											<form:input path="town" type="text" class="form-control"/>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Name</span>
+											<form:input path="name" type="text" class="form-control"/>
+										</div>
+										<hr>
+										<div class="btn-group">
+											<input type="submit" class="btn btn-default" value="Add Clinic"/>
+											<input type="reset" class="btn btn-default" value="Reset"/>
+										</div>
+									</form:form>
+							  	</div>
+							</div>
+						</div> <!-- End col-md-6 -->
+					</div>
+					<div class="row">
+					<hr>
+					<div class="col-md-12">
+							<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Clinics</h3>
 							</div>
 							
-							
-							
-						
-						
-						</div>
-						<div class="col-md-6">
-						
-							<div class="panel panel-default">
-							  <div class="panel-heading">
-							    <h3 class="panel-title">Add Clinic</h3>
-							  </div>
-							  <div class="panel-body">
-
-
-								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
-									<div class="input-group">
-										<span class="input-group-addon">Country</span>
-										<form:input path="country" type="text" class="form-control"/>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">Province</span>
-										<form:input path="province" type="text" class="form-control"/>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">Town</span>
-										<form:input path="town" type="text" class="form-control"/>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">Name</span>
-										<form:input path="name" type="text" class="form-control"/>
-									</div>
-									<hr>
-									<div class="btn-group">
-										<input type="submit" class="btn btn-default" value="Add Clinic"/>
-										<input type="reset" class="btn btn-default" value="Reset"/>
-									</div>
-								</form:form>
-
-							  </div>
+								<table class="table table-bordered table-striped">
+									<thead>
+									    <tr>
+										  	<th>ID</th>
+										  	<th>Name</th>
+										  	<th>Country</th>
+										  	<th>Province</th>
+										  	<th>Town</th>
+										  	<th>Phone</th>
+										  	<th>Email</th>
+									    </tr>
+									 </thead>
+									 <c:forEach items="${clinics}" var="clinic">
+									 	<tr>
+									  	<td>${clinic.id}</td>
+									  	<td>${clinic.name}</td>
+									  	<td>${clinic.country}</td>
+									  	<td>${clinic.province}</td>
+									  	<td>${clinic.town}</td>
+									  	<td>${clinic.phone}</td>
+									  	<td>${clinic.email}</td>
+									  	<td><button type="submit">View Clinic</button></td>
+									  	<td><button type="submit">Remove Association</button></td>
+										</tr>	
+									 </c:forEach> 							  
+								</table>
 							</div>
-						
-						</div>
-						
-									    
-	
-						
-					</div>	
-			</div>
-		</div>		
-	</div>
-	
+						</div> <!-- End col-md-6 -->
+					</div>
+				</div> <!-- End Panel Body -->
+		</div> <!-- End Panel -->
+	</div><!-- End col-md-12 -->		
 <hr>
 <!-- End Content -->
 </div>

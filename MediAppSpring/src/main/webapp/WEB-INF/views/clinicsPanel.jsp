@@ -169,11 +169,27 @@ String that = "hello";
 										<span class="input-group-addon">Name</span>
 										<form:input path="name" type="text" class="form-control"/>
 									</div>
+																	
+									<div>
+										<select class="form-control" name = "country" id="selCountry" onchange="getProvinces()">
+											<option value="0">Country</option>
+										</select>
+										<select class="form-control" name = "province" id="selProvinces" onchange="getTowns()">
+											<option value="0">Province</option>
+										</select>
+										<select class="form-control" name = "town" id="selTowns" onchange="getNames()">
+											<option value="0">Town</option>
+										</select>
+										<select class="form-control" name = "name" id="selNames">
+											<option value="0">Name</option>
+										</select>
+									</div>
+
 									<hr>
 									<div class="btn-group">
 										<input type="submit" class="btn btn-default" value="Submit"/>
 										<input type="reset" class="btn btn-default" value="Reset"/>
-									</div>
+									</div>	
 								</form:form>
 								<hr>
 								<form:form method="POST" action="/mediapp/clinicsPanel/showAllClinics" modelAttribute="Clinic">
@@ -188,11 +204,16 @@ String that = "hello";
 <hr>
 <!-- End Content -->	
 </div>
-
+									
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 <script>
+
 $(document).ready(function(){
+	
+	console.log('onload');
+	
 	$('#createClinic').on('click', function(event){
 		event.preventDefault();
 		$('#searchForm').hide();
@@ -203,7 +224,70 @@ $(document).ready(function(){
 		$('#createForm').hide();
 		$('#searchForm').show();
 	});
+	$.ajax({
+				
+		type: 'GET',
+		url: '/mediapp/clinicsPanel/countries',
+		success: function(response){
+			console.log(response);
+			popCountries(response);
+		},
+		error: function(e){
+			console.log('Error: ' + e);
+		}
+	});	
 });
+	
+	function popCountries(data){
+		console.log('popCountriesFunction');
+		
+		var combo = $("#selCountry");
+		
+		$.each(data, function(i) {
+			console.log(combo);
+			combo.append(
+		        $('<option></option>').val(data[i]).html(data[i])
+		    );
+		});
+	}
+	
+	function getProvinces(){
+		console.log('getProvincesFunction');
+		
+		var country = $("#myCountry");
+		
+		$.ajax({
+			type: 'GET',
+			url: '/mediapp/clinicsPanel/data/' + country.val(),    
+			success: function(response){
+				console.log(response);
+			
+				popProvinces(response);
+				
+			},
+			error: function(e){
+				console.log('Error: ' + e);
+			}
+		});	
+	}
+	
+	function popProvinces(data){
+		console.log('popProvincesFunction');
+		
+		var combo = $("#selProvinces");
+		
+		combo.empty();
+		
+		combo.append(
+		        $('<option></option>').val('Province').html('Province')
+		    );
+		
+		$.each(data, function(i) {
+			combo.append(
+		        $('<option></option>').val(data[i]).html(data[i])
+		    );
+		});
+	}
 </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.mholmes.mediapp.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mholmes.mediapp.domain.Clinic;
@@ -124,5 +126,33 @@ public class ClinicsPanelController {
 		return new ModelAndView("clinicsPanel", map);
 	}
 	
+	@RequestMapping(value = "/countries", method = RequestMethod.GET)
+	public @ResponseBody List<String> getCountries(){
+		System.out.println("hit controller - countries");
+		
+		List<String> countries = new ArrayList<String>();
+		countries.add("Ireland");
+		countries.add("America");
+		
+		return countries;
+	}
+	
+	@RequestMapping(value = "/data/{country}", method = RequestMethod.GET)
+	public @ResponseBody List<String> getCities(@PathVariable String country){
+		System.out.println("hit controller");
+		System.out.println("has country " + country);
+		
+		List<String> cities = new ArrayList<String>();
+		
+		if(country.equals("Ireland")){
+			cities.add("Cork");
+			cities.add("Dublin");
+		}else{
+			cities.add("New York");
+			cities.add("Boston");
+		}
+
+		return cities;
+	}
 	
 }

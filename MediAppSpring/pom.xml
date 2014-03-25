@@ -9,7 +9,8 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
+		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+		<org.springframework-security-version>3.0.5.RELEASE</org.springframework-security-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
@@ -136,28 +137,28 @@
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-core</artifactId>
-    <version>${org.springframework-version}</version>
+    <version>${org.springframework-security-version}</version>
     <type>jar</type>
     <scope>compile</scope>
 </dependency>
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-web</artifactId>
-    <version>${org.springframework-version}</version>
+    <version>${org.springframework-security-version}</version>
     <type>jar</type>
     <scope>compile</scope>
 </dependency>
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-config</artifactId>
-    <version>${org.springframework-version}</version>
+    <version>${org.springframework-security-version}</version>
     <type>jar</type>
     <scope>compile</scope>
 </dependency>
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-taglibs</artifactId>
-    <version>${org.springframework-version}</version>
+    <version>${org.springframework-security-version}</version>
     <type>jar</type>
     <scope>compile</scope>
 </dependency>
@@ -173,6 +174,14 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>5.0.1.Final</version>
 		</dependency>
+	
+<!-- Jackson JSON Mapper -->
+		<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.8.0</version>
+	</dependency>
+            	
 		
 		      
 	</dependencies>
