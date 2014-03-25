@@ -78,7 +78,7 @@
 							<h3 class="panel-title">Add Clinic Association</h3>
 							</div>
 								<div class="panel-body">
-									<form:form method="POST" action="/mediapp/clinicsPanel/addAssociation" modelAttribute="Clinic">															
+									<form:form action="/mediapp/usersPanel/showUser/${user.id}/addAssociation" modelAttribute="Clinic" method="GET">															
 									<div>
 										<select class="form-control" name = "country" id="selCountries" onchange="getProvinces()">
 											<option value="0">Country</option>
@@ -152,6 +152,148 @@
 	
 		
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>		
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>	
+<script>
+$(document).ready(function(){
+	$.ajax({
+				
+		type: 'GET',
+		url: '/mediapp/clinicsPanel/countries',
+		success: function(response){
+			console.log(response);
+			popCountries(response);
+		},
+		error: function(e){
+			console.log('Error: ' + e);
+		}
+	});	
+});
+
+function popCountries(data){
+	console.log('popCountriesFunction');
+	
+	var combo = $("#selCountries");		
+	
+	$.each(data, function(i) {
+		console.log(combo);
+		combo.append(
+	        $('<option></option>').val(data[i]).html(data[i])
+	    );
+	});
+}
+
+function getProvinces(){
+	console.log('getProvincesFunction');
+	
+	var country = $("#selCountries");
+	console.log(country.val());
+
+	$.ajax({
+		type: 'GET',
+		url: '/mediapp/clinicsPanel/pdata/' + country.val(),    
+		success: function(response){
+			console.log(response);
+			popProvinces(response);	
+		},
+		error: function(e){
+			console.log('Error: ' + e);
+		}
+	});	
+}
+
+function popProvinces(data){
+	console.log('popProvincesFunction');
+	
+	var combo = $("#selProvinces");
+	combo.empty();	
+	getTowns();
+	
+	combo.append(
+	        $('<option></option>').val('Province').html('Province')
+	    );
+	
+	$.each(data, function(i) {
+		combo.append(
+	        $('<option></option>').val(data[i]).html(data[i])
+	    );
+	});
+}
+
+function getTowns(){
+	console.log('getTownsFunction');
+	
+	var province = $("#selProvinces");
+	console.log(province.val());
+
+	$.ajax({
+		type: 'GET',
+		url: '/mediapp/clinicsPanel/tdata/' + province.val(),    
+		success: function(response){
+			console.log(response);
+			popTowns(response);		
+		},
+		error: function(e){
+			console.log('Error: ' + e);
+		}
+	});	
+}
+
+function popTowns(data){
+	console.log('popTownsFunction');
+	
+	var combo = $("#selTowns");
+	combo.empty();
+	getNames();
+	
+	combo.append(
+	        $('<option></option>').val('Town').html('Town')
+	    );
+	
+	$.each(data, function(i) {
+		combo.append(
+	        $('<option></option>').val(data[i]).html(data[i])
+	    );
+	});
+}
+
+function getNames(){
+	console.log('getNamesFunction');
+	
+	var town = $("#selTowns");
+	console.log(town.val());
+	
+	$.ajax({
+		type: 'GET',
+		url: '/mediapp/clinicsPanel/ndata/' + town.val(),    
+		success: function(response){
+			console.log(response);
+			popNames(response);
+		},
+		error: function(e){
+			console.log('Error: ' + e);
+		}
+	});	
+}
+
+function popNames(data){
+	console.log('popTownsFunction');
+	
+	var combo = $("#selNames");
+	combo.empty();
+	
+	combo.append(
+	        $('<option></option>').val('Name').html('Name')
+	    );
+	
+	$.each(data, function(i) {
+		combo.append(
+	        $('<option></option>').val(data[i]).html(data[i])
+	    );
+	});
+}
+
+</script>
+	
 </body>
 </html>

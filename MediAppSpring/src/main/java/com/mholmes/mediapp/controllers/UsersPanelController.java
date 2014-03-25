@@ -102,6 +102,8 @@ public class UsersPanelController {
 	@RequestMapping(value = "/showUser/{user.id}", method = RequestMethod.GET)
 	public ModelAndView showUser(@PathVariable("user.id") int id, @ModelAttribute Clinic clinic, ModelMap model) {
 		
+		System.out.println("Controller HIT");
+		
 		ModelMap map = new ModelMap();
 		map.addAttribute("Clinic", new Clinic());
 		map.addAttribute("User", new User());
@@ -110,8 +112,33 @@ public class UsersPanelController {
 		User user = userService.getUser(id);
 		
 		clinicService = (ClinicService)services.getBean("ClinicService");
-		List<Clinic> clinics = clinicService.getClinics(id);
+		List<Clinic> clinics = clinicService.getUserClinics(id);
 
+		model.addAttribute("user", user);
+		model.addAttribute("clinics", clinics);
+		
+		return new ModelAndView("user", map);
+	}
+	
+	@RequestMapping(value = "/showUser/{user.id}/addAssociation", method = RequestMethod.GET)
+	public ModelAndView addAssociation(@PathVariable("user.id") int id, @ModelAttribute Clinic clinic, ModelMap model) {
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("Clinic", new Clinic());
+		map.addAttribute("User", new User());
+		
+		userService = (UserService)services.getBean("UserService");
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		
+		Clinic c = clinicService.getClinic(0, clinic.getName()); //Get clinic via the name
+		if(userService.checkAssociation(id, Integer.parseInt(c.getId())) == false) {
+			userService.addAssociation(id, Integer.parseInt(c.getId())); //Add association between user and clinic
+		} else {
+			System.out.println("Association already exists");
+		}
+		List<Clinic> clinics = clinicService.getUserClinics(id); //Get new list of clinics based on user
+		User user = userService.getUser(id); //Pass user to new jsp
+		
 		model.addAttribute("user", user);
 		model.addAttribute("clinics", clinics);
 		

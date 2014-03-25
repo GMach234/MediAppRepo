@@ -110,7 +110,7 @@ public class ClinicsPanelController {
 		ModelMap map = new ModelMap();
 		
 		clinicService = (ClinicService)services.getBean("ClinicService");
-		Clinic clinic = clinicService.getClinic(id);
+		Clinic clinic = clinicService.getClinic(id, "");
 		
 		model.addAttribute("clinic", clinic);
 		

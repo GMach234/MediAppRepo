@@ -47,10 +47,10 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	@Override
-	public Clinic getClinic(int id) {
-		String SQL = "select * from clinics where clinic_id = ?";
+	public Clinic getClinic(int id, String name) {
+		String SQL = "select * from clinics where clinic_id = ? or name = ?";
 		Clinic clinic = (Clinic) getJdbcTemplate().queryForObject(SQL, 
-						new Object[]{id}, new ClinicMapper());
+						new Object[]{id, name}, new ClinicMapper());
 		return clinic;
 	}
 
@@ -88,7 +88,7 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	@Override
-	public List<Clinic> getClinics(int id) {
+	public List<Clinic> getUserClinics(int id) {
 		
 		String SQL = "select * from clinics where clinic_id = ANY (select clinic_id from associations where user_id = ?);";
 		List<Clinic> clinics = getJdbcTemplate().query(SQL, new Object[]{id},

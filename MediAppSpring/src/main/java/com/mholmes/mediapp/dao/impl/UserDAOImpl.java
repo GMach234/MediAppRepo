@@ -97,6 +97,36 @@ public class UserDAOImpl implements UserDAO {
 		
 		return users;
 	}
+
+	@Override
+	public void addAssociation(int u_id, int c_id) {
+		
+		String SQL = "insert into associations (USER_ID, CLINIC_ID)"
+				+ "values(?, ?)";
+		
+		try{
+			getJdbcTemplate().update(SQL, new Object[] {u_id, c_id});
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+
+	@Override
+	public boolean checkAssociation(int u_id, int c_id) {
+		
+		boolean associated = false;
+		
+		String SQL = "select count(user_id) from associations where user_id = ? and clinic_id = ?";
+		Integer result = (Integer) getJdbcTemplate().queryForObject(SQL, 
+				new Object[]{u_id, c_id}, Integer.class);
+		
+		if(result != null && result>0) {
+			associated = true;
+		}
+		
+		return associated;
+	}
 	
 }
 

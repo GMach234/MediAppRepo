@@ -36,6 +36,16 @@ private UserDAO userDAO;
 	public List<User> listUsers() {
 		return userDAO.listUsers();
 	}
+
+	@Override
+	public void addAssociation(int u_id, int c_id) {
+		userDAO.addAssociation(u_id, c_id);	
+	}
+
+	@Override
+	public boolean checkAssociation(int u_id, int c_id) {
+		return userDAO.checkAssociation(u_id, c_id);
+	}
 	
 	/*@Override
 	public void delete(String username) {

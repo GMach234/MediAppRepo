@@ -22,8 +22,8 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
-	public Clinic getClinic(int id) {
-		return clinicDAO.getClinic(id);
+	public Clinic getClinic(int id, String name) {
+		return clinicDAO.getClinic(id, name);
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
-	public List<Clinic> getClinics(int id) {
-		return clinicDAO.getClinics(id);
+	public List<Clinic> getUserClinics(int id) {
+		return clinicDAO.getUserClinics(id);
 	}
 
 	@Override

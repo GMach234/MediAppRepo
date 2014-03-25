@@ -13,6 +13,9 @@ public interface UserService {
 	 
 	public List<User> listUsers();
 	
+	public void addAssociation(int u_id, int c_id);
+	public boolean checkAssociation(int u_id, int c_id);
+	
 	public void removeUser(int id);
 	//public void delete(String id);
 	 
