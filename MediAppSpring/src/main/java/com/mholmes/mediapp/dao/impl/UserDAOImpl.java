@@ -127,6 +127,14 @@ public class UserDAOImpl implements UserDAO {
 		
 		return associated;
 	}
+
+	@Override
+	public void removeAssociation(int u_id, int c_id) {
+		
+		String SQL = "delete from associations where user_id = ? and clinic_id = ?";
+		getJdbcTemplate().update(SQL,new Object[]{u_id, c_id});
+		
+	}
 	
 }
 

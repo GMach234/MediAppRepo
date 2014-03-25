@@ -20,10 +20,5 @@
 		<p>Email: ${clinic.email}</p>
 		<br>
 		
-		<form:form method="POST" action="/mediapp/clinicsPanel/removeClinic">
-			<form:label path="id"></form:label>
-			<form:input path="id" type="hidden" value='${clinic.id}' />
-			<input type="submit" value="Remove"/>
-		</form:form>
 </body>
 </html>

@@ -157,4 +157,24 @@ public class UsersPanelController {
 		return new ModelAndView("usersPanel", map);
 	}
 	
+	@RequestMapping(value = "/removeAssociation/{clinic.id}", method = RequestMethod.POST)
+	public ModelAndView removeAssociation(@PathVariable("clinic.id") int c_id, @ModelAttribute User user, ModelMap model) {
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("Clinic", new Clinic());
+		map.addAttribute("User", new User());
+
+		userService.removeAssociation(Integer.parseInt(user.getId()), c_id);
+		
+		User cUser = userService.getUser(Integer.parseInt(user.getId()));
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<Clinic> clinics = clinicService.getUserClinics(Integer.parseInt(user.getId()));
+
+		model.addAttribute("user", cUser);
+		model.addAttribute("clinics", clinics);
+		
+		return new ModelAndView("user", map);
+	}
+	
 }

@@ -133,10 +133,19 @@
 									  	<td>${clinic.town}</td>
 									  	<td>${clinic.phone}</td>
 									  	<td>${clinic.email}</td>
-									  	<td><button type="submit">View Clinic</button></td>
-									  	<td><button type="submit">Remove Association</button></td>
+									  	<td>
+									  	<form:form method="GET" action="/mediapp/clinicsPanel/showClinic/${clinic.id}">
+											<input type="submit" value="View"/>
+										</form:form>
+									  	</td>
+									  	<td>
+									  	<form:form action="/mediapp/usersPanel/removeAssociation/${clinic.id}" modelAttribute="User">
+									  		<form:input path="id" type="hidden" name="remove" value="${user.id}"/>
+											<input type="submit" value="Remove Association"/>
+										</form:form>
+									  	</td>
 										</tr>	
-									 </c:forEach> 							  
+									 </c:forEach>
 								</table>
 							</div>
 						</div> <!-- End col-md-6 -->

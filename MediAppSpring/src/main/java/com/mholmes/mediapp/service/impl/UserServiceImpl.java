@@ -46,6 +46,11 @@ private UserDAO userDAO;
 	public boolean checkAssociation(int u_id, int c_id) {
 		return userDAO.checkAssociation(u_id, c_id);
 	}
+
+	@Override
+	public void removeAssociation(int u_id, int c_id) {
+		userDAO.removeAssociation(u_id, c_id);
+	}
 	
 	/*@Override
 	public void delete(String username) {
