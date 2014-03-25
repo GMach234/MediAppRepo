@@ -2,6 +2,8 @@ package com.mholmes.mediapp.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
@@ -61,6 +63,8 @@ public class ClinicsPanelController {
 	
 	@RequestMapping(value = "/clinicSearchResults", method = RequestMethod.POST)
 	public ModelAndView clinicSearchResultsRs(@ModelAttribute Clinic clinic, ModelMap model) {
+		
+		System.out.println("HELLO " + clinic.getName());
 		
 		ModelMap map = new ModelMap();
 		map.addAttribute("User", new User());
@@ -132,27 +136,46 @@ public class ClinicsPanelController {
 		
 		List<String> countries = new ArrayList<String>();
 		countries.add("Ireland");
-		countries.add("America");
+		countries.add("England");
+		countries.add("France");
 		
 		return countries;
 	}
 	
-	@RequestMapping(value = "/data/{country}", method = RequestMethod.GET)
-	public @ResponseBody List<String> getCities(@PathVariable String country){
+	@RequestMapping(value = "/pdata/{country}", method = RequestMethod.GET)
+	public @ResponseBody List<String> getProvinces(@PathVariable String country){
 		System.out.println("hit controller");
 		System.out.println("has country " + country);
 		
-		List<String> cities = new ArrayList<String>();
-		
-		if(country.equals("Ireland")){
-			cities.add("Cork");
-			cities.add("Dublin");
-		}else{
-			cities.add("New York");
-			cities.add("Boston");
-		}
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<String> provinces = clinicService.getProvinces(country);
 
-		return cities;
+		return provinces;
+	}
+	@RequestMapping(value = "/tdata/{province}", method = RequestMethod.GET)
+	public @ResponseBody List<String> getTowns(@PathVariable String province){
+		System.out.println("hit controller");
+		System.out.println("has country " + province);
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<String> towns = clinicService.getTowns(province);
+		
+		return towns;
+	}
+	@RequestMapping(value = "/ndata/{town}", method = RequestMethod.GET)
+	public @ResponseBody List<String> getNames(@PathVariable String town){
+		System.out.println("hit controller");
+		System.out.println("has country " + town);
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<Clinic> clinics = clinicService.getNames(town);
+		
+		List<String> names = new ArrayList<String>();
+		for(int i=0; i<clinics.size(); i++) {
+			Clinic clinic = clinics.get(i);
+			names.add(clinic.getName());
+		}		
+		return names;
 	}
 	
 }

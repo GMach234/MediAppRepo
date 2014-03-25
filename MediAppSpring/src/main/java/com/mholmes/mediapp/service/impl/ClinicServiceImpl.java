@@ -1,6 +1,7 @@
 package com.mholmes.mediapp.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mholmes.mediapp.dao.ClinicDAO;
 import com.mholmes.mediapp.domain.Clinic;
@@ -44,6 +45,21 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	public List<Clinic> getClinics(int id) {
 		return clinicDAO.getClinics(id);
+	}
+
+	@Override
+	public List<String> getProvinces(String country) {
+		return clinicDAO.getProvinces(country);
+	}
+
+	@Override
+	public List<String> getTowns(String province) {
+		return clinicDAO.getTowns(province);
+	}
+
+	@Override
+	public List<Clinic> getNames(String town) {
+		return clinicDAO.getNames(town);
 	}
 	
 }

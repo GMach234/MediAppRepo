@@ -78,29 +78,28 @@
 							<h3 class="panel-title">Add Clinic Association</h3>
 							</div>
 								<div class="panel-body">
-									<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
-										<div class="input-group">
-											<span class="input-group-addon">Country</span>
-											<form:input path="country" type="text" class="form-control"/>
-										</div>
-										<div class="input-group">
-											<span class="input-group-addon">Province</span>
-											<form:input path="province" type="text" class="form-control"/>
-										</div>
-										<div class="input-group">
-											<span class="input-group-addon">Town</span>
-											<form:input path="town" type="text" class="form-control"/>
-										</div>
-										<div class="input-group">
-											<span class="input-group-addon">Name</span>
-											<form:input path="name" type="text" class="form-control"/>
-										</div>
-										<hr>
-										<div class="btn-group">
-											<input type="submit" class="btn btn-default" value="Add Clinic"/>
-											<input type="reset" class="btn btn-default" value="Reset"/>
-										</div>
-									</form:form>
+									<form:form method="POST" action="/mediapp/clinicsPanel/addAssociation" modelAttribute="Clinic">															
+									<div>
+										<select class="form-control" name = "country" id="selCountries" onchange="getProvinces()">
+											<option value="0">Country</option>
+										</select>
+										<select class="form-control" name = "province" id="selProvinces" onchange="getTowns()">
+											<option value="0">Province</option>
+										</select>
+										<select class="form-control" name = "town" id="selTowns" onchange="getNames()">
+											<option value="0">Town</option>
+										</select>
+										<form:select path="name" class="form-control" name = "name" id="selNames">
+											<form:option path="name" value="0">Name</form:option>
+										</form:select>
+									</div>
+
+									<hr>
+									<div class="btn-group">
+										<input type="submit" class="btn btn-default" value="Submit"/>
+										<input type="reset" class="btn btn-default" value="Reset"/>
+									</div>	
+								</form:form>
 							  	</div>
 							</div>
 						</div> <!-- End col-md-6 -->

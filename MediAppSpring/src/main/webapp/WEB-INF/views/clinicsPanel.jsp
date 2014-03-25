@@ -152,26 +152,9 @@ String that = "hello";
 										<span class="input-group-addon">Email</span>
 										<form:input path="email" type="text" class="form-control"/>
 									</div>
-									<hr>
-									<div class="input-group">
-										<span class="input-group-addon">Country</span>
-										<form:input path="country" type="text" class="form-control"/>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">Province</span>
-										<form:input path="province" type="text" class="form-control"/>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">Town</span>
-										<form:input path="town" type="text" class="form-control"/>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">Name</span>
-										<form:input path="name" type="text" class="form-control"/>
-									</div>
-																	
+									<hr>																	
 									<div>
-										<select class="form-control" name = "country" id="selCountry" onchange="getProvinces()">
+										<select class="form-control" name = "country" id="selCountries" onchange="getProvinces()">
 											<option value="0">Country</option>
 										</select>
 										<select class="form-control" name = "province" id="selProvinces" onchange="getTowns()">
@@ -180,9 +163,9 @@ String that = "hello";
 										<select class="form-control" name = "town" id="selTowns" onchange="getNames()">
 											<option value="0">Town</option>
 										</select>
-										<select class="form-control" name = "name" id="selNames">
-											<option value="0">Name</option>
-										</select>
+										<form:select path="name" class="form-control" name = "name" id="selNames">
+											<form:option path="name" value="0">Name</form:option>
+										</form:select>
 									</div>
 
 									<hr>
@@ -241,7 +224,7 @@ $(document).ready(function(){
 	function popCountries(data){
 		console.log('popCountriesFunction');
 		
-		var combo = $("#selCountry");
+		var combo = $("#selCountries");		
 		
 		$.each(data, function(i) {
 			console.log(combo);
@@ -254,16 +237,15 @@ $(document).ready(function(){
 	function getProvinces(){
 		console.log('getProvincesFunction');
 		
-		var country = $("#myCountry");
-		
+		var country = $("#selCountries");
+		console.log(country.val());
+
 		$.ajax({
 			type: 'GET',
-			url: '/mediapp/clinicsPanel/data/' + country.val(),    
+			url: '/mediapp/clinicsPanel/pdata/' + country.val(),    
 			success: function(response){
 				console.log(response);
-			
-				popProvinces(response);
-				
+				popProvinces(response);	
 			},
 			error: function(e){
 				console.log('Error: ' + e);
@@ -275,11 +257,84 @@ $(document).ready(function(){
 		console.log('popProvincesFunction');
 		
 		var combo = $("#selProvinces");
-		
-		combo.empty();
+		combo.empty();	
+		getTowns();
 		
 		combo.append(
 		        $('<option></option>').val('Province').html('Province')
+		    );
+		
+		$.each(data, function(i) {
+			combo.append(
+		        $('<option></option>').val(data[i]).html(data[i])
+		    );
+		});
+	}
+	
+	function getTowns(){
+		console.log('getTownsFunction');
+		
+		var province = $("#selProvinces");
+		console.log(province.val());
+
+		$.ajax({
+			type: 'GET',
+			url: '/mediapp/clinicsPanel/tdata/' + province.val(),    
+			success: function(response){
+				console.log(response);
+				popTowns(response);		
+			},
+			error: function(e){
+				console.log('Error: ' + e);
+			}
+		});	
+	}
+	
+	function popTowns(data){
+		console.log('popTownsFunction');
+		
+		var combo = $("#selTowns");
+		combo.empty();
+		getNames();
+		
+		combo.append(
+		        $('<option></option>').val('Town').html('Town')
+		    );
+		
+		$.each(data, function(i) {
+			combo.append(
+		        $('<option></option>').val(data[i]).html(data[i])
+		    );
+		});
+	}
+	
+	function getNames(){
+		console.log('getNamesFunction');
+		
+		var town = $("#selTowns");
+		console.log(town.val());
+		
+		$.ajax({
+			type: 'GET',
+			url: '/mediapp/clinicsPanel/ndata/' + town.val(),    
+			success: function(response){
+				console.log(response);
+				popNames(response);
+			},
+			error: function(e){
+				console.log('Error: ' + e);
+			}
+		});	
+	}
+	
+	function popNames(data){
+		console.log('popTownsFunction');
+		
+		var combo = $("#selNames");
+		combo.empty();
+		
+		combo.append(
+		        $('<option></option>').val('Name').html('Name')
 		    );
 		
 		$.each(data, function(i) {

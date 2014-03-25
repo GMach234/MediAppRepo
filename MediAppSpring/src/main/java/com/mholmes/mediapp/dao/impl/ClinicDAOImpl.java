@@ -1,6 +1,7 @@
 package com.mholmes.mediapp.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -94,6 +95,35 @@ public class ClinicDAOImpl implements ClinicDAO {
 						new ClinicMapper()); 
 				
 		return clinics;
+	}
+
+	@Override
+	public List<String> getProvinces(String country) {
+		
+		String SQL = "select distinct province from clinics where country = ?;";
+		List<String> provinces = (List<String>) getJdbcTemplate().queryForList(SQL, new Object[]{country}, String.class);
+		
+		return provinces;
+	}
+
+	@Override
+	public List<String> getTowns(String province) {
+
+		String SQL = "select distinct town from clinics where province = ?;";
+		List<String> towns = (List<String>) getJdbcTemplate().queryForList(SQL, new Object[]{province}, String.class);
+		
+		return towns;
+	}
+
+	@Override
+	public List<Clinic> getNames(String town) {
+
+		String SQL = "select * from clinics where town = ?;";
+		List<Clinic> names = (List<Clinic>) getJdbcTemplate().query(SQL, new Object[]{town}, new ClinicMapper());
+		
+		System.out.println("hello " + names);
+		
+		return names;
 	}
 	
 	
