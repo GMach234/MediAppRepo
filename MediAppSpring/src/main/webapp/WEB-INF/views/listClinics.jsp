@@ -47,19 +47,21 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Results</h4></div>
 					<div class="panel-body">
-						<c:forEach items="${clinics}" var="clinic">
-							<form action="/mediapp/clinicsPanel/removeClinic/${clinic.id}">
-								<ul class="list-group">
-								  <li class="list-group-item list-group-item-success"><span class="badge">${clinic.id}</span>${clinic.name}</li>
-								  <li class="list-group-item">Country: ${clinic.country}</li>
-								  <li class="list-group-item">Province: ${clinic.province}</li>
-								  <li class="list-group-item">Town: ${clinic.town}</li>
-								  <li class="list-group-item">Phone: ${clinic.phone}</li>
-								  <li class="list-group-item">Email: ${clinic.email}</li>
-								  <li class="list-group-item"><button type="submit">Remove Clinic</button></li>
-								</ul>
-							</form>	
-						</c:forEach>
+					
+						<table class="table table-bordered table-striped table-hover">
+							<thead><tr><th>ID</th><th>Name</th><th>Country</th><th>Province</th><th>Town</th><th>Email</th><th></th></tr></thead>
+								<c:forEach items="${clinics}" var="clinic">
+									<tr>
+									<td>${clinic.id}</td><td>${clinic.name}</td><td>${clinic.country}</td><td>${clinic.province}</td><td>${clinic.town}</td><td>${clinic.email}</td>
+									<td>
+									<form action="/mediapp/clinicsPanel/showClinic/${clinic.id}">
+									<button type="submit">View Clinic</button>
+									</form>
+									</td>
+									</tr>
+								</c:forEach>
+						
+						</table>
 					</div>	
 			</div>
 		</div>		

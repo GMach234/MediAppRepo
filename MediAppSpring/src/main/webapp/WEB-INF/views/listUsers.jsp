@@ -45,19 +45,25 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h4>Results</h4></div>
+				<div class="panel-heading"><h4>User Search Results</h4></div>
 					<div class="panel-body">
-						<c:forEach items="${users}" var="user">
-							<form action="/mediapp/usersPanel/showUser/${user.id}">
-								<ul class="list-group">
-								  <li class="list-group-item list-group-item-success"><span class="badge">${user.id}</span>${user.name}</li>
-								  <li class="list-group-item">Type: ${user.type}</li>
-								  <li class="list-group-item">Email: ${user.email}</li>
-								  <li class="list-group-item">Phone: ${user.phone}</li>
-								  <li class="list-group-item"><button type="submit">View User</button></li>
-								</ul>
-							</form>	
-						</c:forEach>
+						<table class="table table-bordered table-striped table-hover">
+							<thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Email</th><th></th></tr></thead>
+								<c:forEach items="${users}" var="user">
+									<tr>
+									<td>${user.id}</td><td>${user.name}</td><td>${user.type}</td><td>${user.email}</td>
+									<td>
+									<form action="/mediapp/usersPanel/showUser/${user.id}">
+									<button type="submit">View User</button>
+									</form>
+									</td>
+									</tr>
+								</c:forEach>
+						
+						</table>
+					
+					
+						
 					</div>	
 			</div>
 		</div>		
