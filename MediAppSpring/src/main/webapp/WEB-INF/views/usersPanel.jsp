@@ -53,7 +53,7 @@
 <!-- Content -->
 	<div class="row">
 		<div class="col-md-3">
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading"><h4>Actions</h4></div>
 					<div class="panel-body">
 						<div class="list-group">
@@ -65,7 +65,7 @@
 		</div>
 		<div class="col-md-9">
 			<div id="createForm">
-				<div class="panel panel-default">
+				<div class="panel panel-success">
 				<div class="panel-heading"><h4>Create User</h4></div>
 					<div class="panel-body">
 						<form:form method="POST" action="/mediapp/usersPanel/addUser" modelAttribute="User">
@@ -115,7 +115,7 @@
 			</div>
 		
 			<div id="searchForm" style="display:none;">			
-			<div class="panel panel-default">
+			<div class="panel panel-success">
 				<div class="panel-heading"><h4>Search Users</h4></div>
 					<div class="panel-body">
 						<form:form method="POST" action="/mediapp/usersPanel/userSearchResults" modelAttribute="User">

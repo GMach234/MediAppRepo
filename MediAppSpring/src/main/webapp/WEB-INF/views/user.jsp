@@ -52,28 +52,31 @@
 <!-- Content -->
 	
 	<div class="col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-heading"><h2>${user.name}</h2></div>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h3>${user.name}</h3></div>
 				<div class="panel-body">
 					<div class="row">	
 						<div class="col-md-6">
-							<div class="panel panel-default">
-							<div class="panel-heading">
-							<h3 class="panel-title">Details</h3>
-							</div>
-								<div class="panel-body">
-								 <ul class="list-group">
-								 <li class="list-group-item">ID: ${user.id}</li>
-								 <li class="list-group-item">Address: ${user.address}</li>
-								 <li class="list-group-item">Phone: ${user.phone}</li>
-								 <li class="list-group-item">Email: ${user.email}</li>
-								 <li class="list-group-item">Type: ${user.type}</li>
+							<div class="well">
+								<ul class="list-group">
+								 <li class="list-group-item">
+								 <h4 class="list-group-item-heading">Details</h4>
+    							 <p class="list-group-item-text">ID: ${user.id}<br>Name: ${user.name}</p>
+								 </li>
+								 <li class="list-group-item">
+								 <h4 class="list-group-item-heading">Address</h4>
+    							 <p class="list-group-item-text">${user.address}</p>
+								 </li>
+								 <li class="list-group-item">
+								 <h4 class="list-group-item-heading">Contact</h4>
+    							 <p class="list-group-item-text">Email: ${user.email}<br>Phone Number: ${user.phone}</p>
+								 </li>
 								 </ul>
-							  	</div>
-							</div>
+								</div>
+						
 						</div> <!-- End col-md-6 -->
 						<div class="col-md-6">
-							<div class="panel panel-default">
+							<div class="panel panel-success">
 							<div class="panel-heading">
 							<h3 class="panel-title">Add Clinic Association</h3>
 							</div>
@@ -107,7 +110,7 @@
 					<div class="row">
 					<hr>
 					<div class="col-md-12">
-							<div class="panel panel-default">
+							<div class="panel panel-success">
 							<div class="panel-heading">
 							<h3 class="panel-title">Clinics</h3>
 							</div>
@@ -115,13 +118,8 @@
 								<table class="table table-bordered table-striped">
 									<thead>
 									    <tr>
-										  	<th>ID</th>
-										  	<th>Name</th>
-										  	<th>Country</th>
-										  	<th>Province</th>
-										  	<th>Town</th>
-										  	<th>Phone</th>
-										  	<th>Email</th>
+										  	<th>ID</th><th>Name</th><th>Country</th><th>Province</th><th>Town</th>
+										  	<th>Phone</th><th>Email</th><th></th><th></th>
 									    </tr>
 									 </thead>
 									 <c:forEach items="${clinics}" var="clinic">
@@ -135,13 +133,13 @@
 									  	<td>${clinic.email}</td>
 									  	<td>
 									  	<form:form method="GET" action="/mediapp/clinicsPanel/showClinic/${clinic.id}">
-											<input type="submit" value="View"/>
+											<input type="submit" class="btn btn-primary" value="View"/>
 										</form:form>
 									  	</td>
 									  	<td>
 									  	<form:form action="/mediapp/usersPanel/removeAssociation/${clinic.id}" modelAttribute="User">
 									  		<form:input path="id" type="hidden" name="remove" value="${user.id}"/>
-											<input type="submit" value="Remove Association"/>
+											<input type="submit" class="btn btn-danger" value="Remove Association"/>
 										</form:form>
 									  	</td>
 										</tr>	

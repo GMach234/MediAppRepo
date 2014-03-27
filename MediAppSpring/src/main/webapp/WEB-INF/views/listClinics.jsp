@@ -44,8 +44,8 @@
 <!-- Content -->
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading"><h4>Results</h4></div>
+			<div class="panel panel-info">
+				<div class="panel-heading"><h4>Clinic Search Results</h4></div>
 					<div class="panel-body">
 					
 						<table class="table table-bordered table-striped table-hover">
@@ -55,7 +55,7 @@
 									<td>${clinic.id}</td><td>${clinic.name}</td><td>${clinic.country}</td><td>${clinic.province}</td><td>${clinic.town}</td><td>${clinic.email}</td>
 									<td>
 									<form action="/mediapp/clinicsPanel/showClinic/${clinic.id}">
-									<button type="submit">View Clinic</button>
+									<button type="submit" class="btn btn-primary btn-block">View Clinic</button>
 									</form>
 									</td>
 									</tr>

@@ -1,5 +1,8 @@
 package com.mholmes.mediapp.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -8,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -26,6 +30,7 @@ import com.mholmes.mediapp.service.UserService;
 @RequestMapping("/usersPanel")
 public class UsersPanelController {
 
+	public ShaPasswordEncoder sha = new ShaPasswordEncoder(256); 
 	private static UserService userService;
 	private static ClinicService clinicService;
 	private static ApplicationContext services = new ClassPathXmlApplicationContext("dataAccess.xml");
@@ -49,6 +54,11 @@ public class UsersPanelController {
 		if(result.hasErrors()) {
 			return new ModelAndView("usersPanel", map);
 		}
+		
+		//sha.setIterations(1000);
+		String hash = sha.encodePassword(user.getPassword(), "A");
+		System.out.println("New Hash = " + hash);
+		user.setPassword(hash);
 		
 		userService = (UserService)services.getBean("UserService");
 		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword(), 1);

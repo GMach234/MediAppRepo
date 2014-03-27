@@ -44,7 +44,7 @@
 <!-- Content -->
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-default">
+			<div class="panel panel-success">
 				<div class="panel-heading"><h4>User Search Results</h4></div>
 					<div class="panel-body">
 						<table class="table table-bordered table-striped table-hover">
@@ -54,7 +54,7 @@
 									<td>${user.id}</td><td>${user.name}</td><td>${user.type}</td><td>${user.email}</td>
 									<td>
 									<form action="/mediapp/usersPanel/showUser/${user.id}">
-									<button type="submit">View User</button>
+									<button type="submit" class="btn btn-primary btn-block">View User</button>
 									</form>
 									</td>
 									</tr>

@@ -40,8 +40,8 @@
 	  
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/mediapp/usersPanel">User Panel</a></li>
-	        <li><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	        <li><a href="/mediapp/usersPanel">User Panel</a></li>
+	        <li class="active"><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
 	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
 	      </ul>
 	    </div>
@@ -49,19 +49,85 @@
 	</nav>
 <!-- End NavBar -->	
 
-</div>
-
-<h2>${clinic.name}</h2>
-
-		<p>Name:: ${clinic.name}</p>
-		<p>ID: ${clinic.id}</p>
-		<p>Country: ${clinic.country}</p>
-		<p>Province: ${clinic.province}</p>
-		<p>Town: ${clinic.town}</p>
-		<p>Phone: ${clinic.phone}</p>
-		<p>Email: ${clinic.email}</p>
-		<br>
-		
+<!-- Content -->
+	
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h3>${clinic.name}</h3></div>
+				<div class="panel-body">
+					<div class="row">	
+						<div class="col-md-6">
+								 <div class="well">
+								<ul class="list-group">
+								 <li class="list-group-item">
+								 <h4 class="list-group-item-heading">Details</h4>
+    							 <p class="list-group-item-text">ID: ${clinic.id}<br>Name: ${clinic.name}</p>
+								 </li>
+								 <li class="list-group-item">
+								 <h4 class="list-group-item-heading">Address</h4>
+    							 <p class="list-group-item-text">${clinic.country}, ${clinic.province}, ${clinic.town}, ${clinic.address}</p>
+								 </li>
+								 <li class="list-group-item">
+								 <h4 class="list-group-item-heading">Contact</h4>
+    							 <p class="list-group-item-text">Email: ${clinic.email}<br>Phone Number: ${clinic.phone}</p>
+								 </li>
+								 </ul>
+								</div>
+							</div>
+					</div>
+					<div class="row">
+					<hr>
+					<div class="col-md-12">
+							<div class="panel panel-success">
+							<div class="panel-heading">
+							<h3 class="panel-title">Patients</h3>
+							</div>
+							
+								<table class="table table-bordered table-striped">
+									<thead>
+									    <tr>
+										  	<th>ID</th>
+										  	<th>Name</th>
+										  	<th>Age</th>
+										  	<th>Address</th>
+										  	<th>Phone</th>
+										  	<th>Email</th>
+									    </tr>
+									 </thead>
+									 
+									 <%-- <c:forEach items="${clinics}" var="clinic">
+									 	<tr>
+									  	<td>${clinic.id}</td>
+									  	<td>${clinic.name}</td>
+									  	<td>${clinic.country}</td>
+									  	<td>${clinic.province}</td>
+									  	<td>${clinic.town}</td>
+									  	<td>${clinic.phone}</td>
+									  	<td>${clinic.email}</td>
+									  	<td>
+									  	<form:form method="GET" action="/mediapp/clinicsPanel/showClinic/${clinic.id}">
+											<input type="submit" value="View"/>
+										</form:form>
+									  	</td>
+									  	<td>
+									  	<form:form action="/mediapp/usersPanel/removeAssociation/${clinic.id}" modelAttribute="User">
+									  		<form:input path="id" type="hidden" name="remove" value="${user.id}"/>
+											<input type="submit" value="Remove Association"/>
+										</form:form>
+									  	</td>
+										</tr>	
+									 </c:forEach> --%>
+									 
+								</table>
+							</div>
+						</div> <!-- End col-md-6 -->
+					</div>
+				</div> <!-- End Panel Body -->
+		</div> <!-- End Panel -->
+	</div><!-- End col-md-12 -->		
+<hr>
+<!-- End Content -->
+</div>		
 		
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

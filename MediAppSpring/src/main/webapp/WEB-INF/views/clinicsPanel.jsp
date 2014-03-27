@@ -24,31 +24,6 @@
 </head>
 <body>
 
-<%--   <%
-String thing = "";
-try{
-	String connectionURL = "jdbc:mysql://localhost:3306/mediappdb";
-	Connection connection = null;
-	Class.forName("com.mysql.jdbc.Driver").newInstance();
-	connection = DriverManager.getConnection(connectionURL, "proj", "proj");
-	if(!connection.isClosed())
-		out.println("Success");
-
-	String queryString = "Select * from users";
-	PreparedStatement statement = connection.prepareStatement(queryString);
-	ResultSet resultSet = statement.executeQuery();
-	while(resultSet.next()) {
-		out.println("from DB = " + resultSet.getString("name"));	
-		thing = resultSet.getString("name");
-	}
-}
-catch(Exception ex) {
-	out.println("Failure");
-}
-String that = "hello";
-%>
-<%=thing %> --%> 
-
 <div class="container">
 	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User ID: <sec:authentication property="principal.username"/></span></a></h1>
 
@@ -81,7 +56,7 @@ String that = "hello";
 <!-- Content -->
 	<div class="row">
 		<div class="col-md-3">
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading"><h4>Actions</h4></div>
 					<div class="panel-body">
 						<div class="list-group">
@@ -93,7 +68,7 @@ String that = "hello";
 		</div>
 		<div class="col-md-9">
 				<div id="createForm">
-					<div class="panel panel-default">
+					<div class="panel panel-success">
 						<div class="panel-heading"><h4>Create Clinic</h4></div>
 							<div class="panel-body">
 								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic" modelAttribute="Clinic">								
@@ -140,7 +115,7 @@ String that = "hello";
 					</div>
 			</div>
 			<div id="searchForm" style="display:none;">
-				<div class="panel panel-default">
+				<div class="panel panel-success">
 					<div class="panel-heading"><h4>Search Clinics</h4></div>
 						<div class="panel-body">
 								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
