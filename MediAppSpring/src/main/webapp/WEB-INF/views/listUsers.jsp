@@ -44,7 +44,7 @@
 <!-- Content -->
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-success">
+			<div class="panel panel-info">
 				<div class="panel-heading"><h4>User Search Results</h4></div>
 					<div class="panel-body">
 						<table class="table table-bordered table-striped table-hover">
@@ -60,10 +60,7 @@
 									</tr>
 								</c:forEach>
 						
-						</table>
-					
-					
-						
+						</table>	
 					</div>	
 			</div>
 		</div>		

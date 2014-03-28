@@ -45,19 +45,22 @@ public class ClinicsPanelController {
 	
 	@RequestMapping(value = "/addClinic", method = RequestMethod.POST)
 	public ModelAndView addUser(@ModelAttribute("Clinic") @Valid Clinic clinic, BindingResult result, ModelMap model) {
-		
+			
 		ModelMap map = new ModelMap();
-		map.addAttribute("Clinic", new Clinic());
 		
 		if(result.hasErrors()) {
+			map.addAttribute("Clinic", new Clinic());
 			return new ModelAndView("clinicsPanel", map);
 		}
-			
+	
 		clinicService = (ClinicService)services.getBean("ClinicService");
 		clinicService.createClinic(clinic.getCountry(), clinic.getProvince(), clinic.getTown(), 
 				clinic.getName(), clinic.getAddress(), clinic.getPhone(), clinic.getEmail());
 
-		return new ModelAndView("clinicsPanel", map);
+		Clinic c = clinicService.getClinic(0, clinic.getName());
+		map.addAttribute("clinic", c);
+		
+		return new ModelAndView("clinic", map);
 	}
 	
 	

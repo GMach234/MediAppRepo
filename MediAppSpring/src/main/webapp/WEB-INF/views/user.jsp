@@ -71,6 +71,14 @@
 								 <h4 class="list-group-item-heading">Contact</h4>
     							 <p class="list-group-item-text">Email: ${user.email}<br>Phone Number: ${user.phone}</p>
 								 </li>
+								 <li class="list-group-item">
+								 
+								 <form:form action="/mediapp/usersPanel/removeUser/${user.id}" modelAttribute="User">
+							  		<form:input path="id" type="hidden" name="remove" value="${user.id}"/>
+									<input type="submit" class="btn btn-danger" value="Remove User"/>
+								</form:form>
+								 
+								 </li>
 								 </ul>
 								</div>
 						

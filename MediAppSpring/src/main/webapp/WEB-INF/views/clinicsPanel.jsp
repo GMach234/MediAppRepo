@@ -74,16 +74,21 @@
 								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic" modelAttribute="Clinic">								
 										<div class="input-group">
 											<span class="input-group-addon">Country</span>
-											<form:input path="country" type="text" class="form-control"/>
+											<form:select class="form-control" path="country" name = "country" id="selCountries" onchange="getProvinces()">
+											<form:option path="country" value=""></form:option>
+										</form:select>
 										</div>
+										<form:errors path="country" class="label label-warning"></form:errors>
 										<div class="input-group">
 											<span class="input-group-addon">Province</span>
 											<form:input path="province" type="text" class="form-control"/>
 										</div>
+										<form:errors path="province" class="label label-warning"></form:errors>
 										<div class="input-group">
 											<span class="input-group-addon">Town</span>
 											<form:input path="town" type="text" class="form-control"/>
 										</div>	
+										<form:errors path="town" class="label label-warning"></form:errors>
 										<div class="input-group">
 											<span class="input-group-addon">Address</span>
 											<form:input path="address" type="text" class="form-control"/>

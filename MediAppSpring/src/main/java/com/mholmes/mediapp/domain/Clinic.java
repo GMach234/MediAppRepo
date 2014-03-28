@@ -11,8 +11,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Clinic implements Serializable {
 
 	String id;
+	@NotEmpty(message="Country cannot be blank")
 	String country;
+	@NotEmpty(message="Province cannot be blank") @Size(min=1, max=30, message="Province must be between 1-50 characters")
 	String province;
+	@NotEmpty(message="Town cannot be blank") @Size(min=1, max=50, message="Town must be between 1-30 characters")
 	String town;
 	@NotEmpty(message="Name cannot be blank") @Size(min=1, max=50, message="Name must be between 1-50 characters")
 	String name;
