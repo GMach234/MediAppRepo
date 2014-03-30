@@ -23,7 +23,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User ID: <sec:authentication property="principal.username"/></span></a></h1>
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
 
 <!-- NavBar -->
 	<nav class="navbar navbar-default" role="navigation">

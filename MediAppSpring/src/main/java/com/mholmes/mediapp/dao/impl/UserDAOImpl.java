@@ -10,7 +10,6 @@ import com.mholmes.mediapp.mappers.UserMapper;
 
 public class UserDAOImpl implements UserDAO {
 
-	
 	private DataSource dataSource;
 	
 	public DataSource getDataSource() {
@@ -38,12 +37,7 @@ public class UserDAOImpl implements UserDAO {
 			} else {
 				role = "ROLE_USER";
 			}
-			
-			/*String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD, ENABLED)" +
-						" values (?, ?, ?, ?, ?, ?, ?);"
-						+ "insert into authorities (USER_ID, AUTHORITY)" +
-						" values (select user_id from users where user_id = (select MAX(user_id) from users), 'ROLE_ADMIN')";
-			*/
+
 			String SQL = "insert into users (NAME, USER_TYPE, ADDRESS, PHONE, EMAIL, PASSWORD, ENABLED)" 
 			+ "values (?, ?, ?, ?, ?, ?, ?);";
 			String SQL1 = "insert into authorities (USER_ID) SELECT user_id from users "
@@ -62,10 +56,10 @@ public class UserDAOImpl implements UserDAO {
 			}
 	}	
 
-	public User getUser(int id) {
-		String SQL = "select * from users where user_id = ?";
+	public User getUser(int id, String email) {
+		String SQL = "select * from users where user_id = ? or email = ?";
 		User user = (User) getJdbcTemplate().queryForObject(SQL, 
-						new Object[]{id}, new UserMapper());
+						new Object[]{id, email}, new UserMapper());
 		return user;
 	}
 	
@@ -80,9 +74,13 @@ public class UserDAOImpl implements UserDAO {
 	public void removeUser(int id) {
 		
 		String SQL = "delete from users where user_id = ?";
+		String SQL1 = "delete from authorities where user_id = ?";
+		String SQL2 = "delete from associations where user_id = ?";
 		
 		try{
 			getJdbcTemplate().update(SQL, id);
+			getJdbcTemplate().update(SQL1, id);
+			getJdbcTemplate().update(SQL2, id);
 		}
 		catch(Exception e){
 			e.printStackTrace();

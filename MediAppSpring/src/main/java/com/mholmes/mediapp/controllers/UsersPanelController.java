@@ -49,21 +49,29 @@ public class UsersPanelController {
 	public ModelAndView addUser(@ModelAttribute("User") @Valid User user, BindingResult result, ModelMap model) {
 		
 		ModelMap map = new ModelMap();
-		map.addAttribute("User", new User());
-		
+
 		if(result.hasErrors()) {
+			map.addAttribute("User", new User());
 			return new ModelAndView("usersPanel", map);
 		}
 		
-		//sha.setIterations(1000);
-		String hash = sha.encodePassword(user.getPassword(), "A");
+		String hash = sha.encodePassword(user.getPassword(), user.getEmail());
 		System.out.println("New Hash = " + hash);
 		user.setPassword(hash);
 		
 		userService = (UserService)services.getBean("UserService");
 		userService.createUser(user.getName(), user.getType(), user.getAddress(), user.getPhone(), user.getEmail(), user.getPassword(), 1);
 		
-		return new ModelAndView("usersPanel", map);
+		User u = userService.getUser(0, user.getEmail());
+		map.addAttribute("user", u);
+		
+		clinicService = (ClinicService)services.getBean("ClinicService");
+		List<Clinic> clinics = clinicService.getUserClinics(Integer.parseInt(u.getId()));
+		
+		map.addAttribute("clinics", clinics);
+		map.addAttribute("Clinic", new Clinic());
+		
+		return new ModelAndView("user", map);
 	}
 	
 	@RequestMapping(value = "/userSearchResults", method = RequestMethod.POST)
@@ -119,7 +127,7 @@ public class UsersPanelController {
 		map.addAttribute("User", new User());
 		
 		userService = (UserService)services.getBean("UserService");
-		User user = userService.getUser(id);
+		User user = userService.getUser(id, "");
 		
 		clinicService = (ClinicService)services.getBean("ClinicService");
 		List<Clinic> clinics = clinicService.getUserClinics(id);
@@ -147,7 +155,7 @@ public class UsersPanelController {
 			System.out.println("Association already exists");
 		}
 		List<Clinic> clinics = clinicService.getUserClinics(id); //Get new list of clinics based on user
-		User user = userService.getUser(id); //Pass user to new jsp
+		User user = userService.getUser(id, ""); //Pass user to new jsp
 		
 		model.addAttribute("user", user);
 		model.addAttribute("clinics", clinics);
@@ -176,7 +184,7 @@ public class UsersPanelController {
 
 		userService.removeAssociation(Integer.parseInt(user.getId()), c_id);
 		
-		User cUser = userService.getUser(Integer.parseInt(user.getId()));
+		User cUser = userService.getUser(Integer.parseInt(user.getId()), "");
 		
 		clinicService = (ClinicService)services.getBean("ClinicService");
 		List<Clinic> clinics = clinicService.getUserClinics(Integer.parseInt(user.getId()));

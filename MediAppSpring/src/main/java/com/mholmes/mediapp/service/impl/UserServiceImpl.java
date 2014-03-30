@@ -19,8 +19,8 @@ private UserDAO userDAO;
 		userDAO.createUser(name, type, address, phone, email, password, enabled);
 	}
 
-	public User getUser(int id) {
-		return userDAO.getUser(id);
+	public User getUser(int id, String email) {
+		return userDAO.getUser(id, email);
 	}
 
 	@Override

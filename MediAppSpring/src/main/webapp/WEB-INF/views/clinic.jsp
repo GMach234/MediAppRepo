@@ -22,7 +22,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User ID: <sec:authentication property="principal.username"/></span></a></h1>
+	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
 
 <!-- NavBar -->
 	<nav class="navbar navbar-default" role="navigation">
@@ -71,6 +71,14 @@
 								 <h4 class="list-group-item-heading">Contact</h4>
     							 <p class="list-group-item-text">Email: ${clinic.email}<br>Phone Number: ${clinic.phone}</p>
 								 </li>
+								 <li class="list-group-item">
+								 
+								 <form:form action="/mediapp/clinicsPanel/removeClinic/${clinic.id}" modelAttribute="Clinic">
+<%-- 							  		<form:input path="id" type="hidden" name="remove" value="${clinic.id}"/> --%>
+									<input type="submit" class="btn btn-danger" value="Remove Clinic"/>
+								</form:form>
+								 
+								 </li>								 								 
 								 </ul>
 								</div>
 							</div>

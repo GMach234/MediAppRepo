@@ -10,7 +10,7 @@ public interface UserDAO {
 	public void createUser(String name, String type, String address, String phone, String email, String password, int enabled);
 	public void removeUser(int id);
 	
-	public User getUser(int id);
+	public User getUser(int id, String email);
 	public List<User> searchUsers(int id, String name, String email);
 	public List<User> listUsers();
 	

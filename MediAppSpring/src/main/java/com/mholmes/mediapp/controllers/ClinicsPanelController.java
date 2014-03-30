@@ -121,7 +121,7 @@ public class ClinicsPanelController {
 	}
 	
 	
-	@RequestMapping(value = "/removeClinic/{clinic.id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/removeClinic/{clinic.id}", method = RequestMethod.POST)
 	public ModelAndView removeClinic(@PathVariable("clinic.id") int id, @ModelAttribute Clinic clinic, ModelMap model) {
 		
 		ModelMap map = new ModelMap();

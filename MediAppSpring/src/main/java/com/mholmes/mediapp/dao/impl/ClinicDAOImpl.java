@@ -69,8 +69,11 @@ public class ClinicDAOImpl implements ClinicDAO {
 		
 		String SQL = "delete from clinics where clinic_id = ?";
 		//Take Patients into account
+		String SQL1 = "delete from associations where clinic_id = ?";
+		
 		try{
 			getJdbcTemplate().update(SQL, id);
+			getJdbcTemplate().update(SQL1, id);
 		}
 		catch(Exception e){
 			e.printStackTrace();
