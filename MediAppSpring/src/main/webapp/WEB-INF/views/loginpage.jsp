@@ -35,7 +35,7 @@
 			<div class="well">  	
 				<form name='f' method="POST" action="<c:url value='/j_spring_security_check' />">
 					<div class="input-group">	
-						<span class="input-group-addon">User ID</span>
+						<span class="input-group-addon">Email</span>
 						<input type='text' name='j_username' value='' class="form-control">
 					</div>
 					<div class="input-group">

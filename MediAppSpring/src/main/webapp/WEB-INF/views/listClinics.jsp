@@ -48,7 +48,7 @@
 				<div class="panel-heading"><h4>Clinic Search Results</h4></div>
 					<div class="panel-body">
 					
-						<table class="table table-bordered table-striped table-hover">
+						<table class="table table-bordered table-striped table-hover table-responsive">
 							<thead><tr><th>ID</th><th>Name</th><th>Country</th><th>Province</th><th>Town</th><th>Email</th><th></th></tr></thead>
 								<c:forEach items="${clinics}" var="clinic">
 									<tr>

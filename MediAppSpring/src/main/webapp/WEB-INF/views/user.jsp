@@ -123,7 +123,7 @@
 							<h3 class="panel-title">Clinics</h3>
 							</div>
 							
-								<table class="table table-bordered table-striped">
+								<table class="table table-bordered table-striped table-responsive">
 									<thead>
 									    <tr>
 										  	<th>ID</th><th>Name</th><th>Country</th><th>Province</th><th>Town</th>
