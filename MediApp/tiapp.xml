@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <id>com.mholmes.favebooks</id>
-    <name>FaveBooks</name>
+    <id>com.mholmes.mediapp</id>
+    <name>MediApp</name>
     <version>1.0</version>
     <publisher>GMach234</publisher>
     <url>http://</url>
@@ -11,7 +11,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>975c19e1-af28-4cca-b380-789db901618b</guid>
+    <guid>d5478b10-6f35-46eb-827e-bc85534db6c0</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <plist>

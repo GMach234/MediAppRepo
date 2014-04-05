@@ -1,0 +1,13 @@
+<Alloy>
+	<Window class="container">
+		<Label id="label" onClick="doClick">Hello, World</Label>
+		
+		<Menu id="menu" platform="android">
+			<MenuItem id="showLogin"
+				title="Login"
+				onClick="showLogin"
+				showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM" />
+		</Menu>
+		
+	</Window>
+</Alloy>

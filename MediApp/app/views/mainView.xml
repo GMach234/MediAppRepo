@@ -1,0 +1,39 @@
+<Alloy>
+	<TabGroup backgroundColor="white" >
+        <Tab id="myPatientsTab" title="My Patients" icon="KS_nav_views.png">
+            <Window id="myPatients" title="My Patients">
+               <Label id="label1" color="#999">My Patients Window</Label>
+               
+               <ListView id="list">
+			        <ListSection>
+			            <ListItem title="List item 1"></ListItem>
+			            <ListItem title="List item 2"></ListItem>
+			            <ListItem title="List item 3"></ListItem>
+			        </ListSection>
+		    	</ListView>
+               
+            </Window>
+        </Tab>
+        <Tab id="searchTab" title="Search" icon="KS_nav_views.png">
+            <Window id="search" title="Search">
+                <Label id="label2" color="#999">Search Window</Label>
+                
+                <ListView id="list">
+			        <ListSection>
+			            <ListItem title="List item 1"></ListItem>
+			            <ListItem title="List item 2"></ListItem>
+			            <ListItem title="List item 3"></ListItem>
+			        </ListSection>
+		    	</ListView>                
+                
+            </Window>
+        </Tab>
+        <Tab id="optionsTab" title="Options" icon="KS_nav_views.png">
+            <Window id="options" title="Options">
+                <Label id="label2" color="#999">Options Window</Label>
+                
+                
+            </Window>
+        </Tab>
+    </TabGroup>
+</Alloy>

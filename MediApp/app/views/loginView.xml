@@ -1,0 +1,9 @@
+<Alloy>
+	<Window class="container">
+		<Label id="label">The Login Page</Label>	
+		
+		<Button id="loginButton" onClick="showMain" 
+			title="Login" top="10" width="100" height="50" />
+			
+	</Window>
+</Alloy>
