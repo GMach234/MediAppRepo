@@ -36,7 +36,7 @@ public class UsersPanelController {
 	private static ApplicationContext services = new ClassPathXmlApplicationContext("dataAccess.xml");
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value = "/usersPanel", method = RequestMethod.GET)
+	@RequestMapping(value="/usersPanel", method = RequestMethod.GET)
 	public ModelAndView usersPanel(ModelMap model) {
 		
 		ModelMap map = new ModelMap();

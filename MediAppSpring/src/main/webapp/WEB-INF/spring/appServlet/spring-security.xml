@@ -8,7 +8,7 @@
  
 	<http auto-config="true">
 		<intercept-url pattern="/*" access="ROLE_ADMIN" />
-		<form-login login-page="/auth/login" default-target-url="/controlPanel"
+		<form-login login-page="/auth/login" default-target-url="/usersPanel"
 			authentication-failure-url="/auth/failure"/>
 		<logout logout-success-url="/auth/logout" />
 		<access-denied-handler error-page="/auth/denied"/>

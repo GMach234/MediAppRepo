@@ -141,7 +141,7 @@
 						<form:form method="POST" action="/mediapp/usersPanel/showAllUsers" modelAttribute="Clinic">
 							<input type="submit" class="btn btn-default" value="View All Users"/>
 						</form:form>
-						
+
 					</div>
 				</div>				
 			</div>			

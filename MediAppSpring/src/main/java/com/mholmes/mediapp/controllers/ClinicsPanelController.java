@@ -33,7 +33,7 @@ public class ClinicsPanelController {
 	private static ApplicationContext services = new ClassPathXmlApplicationContext("dataAccess.xml");
 	
 	
-	@RequestMapping(value = "/clinicsPanel", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView clinicsPanel(ModelMap model) {
 		
 		ModelMap map = new ModelMap();
