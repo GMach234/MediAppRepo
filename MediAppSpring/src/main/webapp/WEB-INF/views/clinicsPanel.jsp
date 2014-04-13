@@ -25,7 +25,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
+	<h1><a href="<c:url value="/usersPanel"/>">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
 
 
 <!-- NavBar -->
@@ -44,8 +44,8 @@
 	  
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><a href="/mediapp/usersPanel">User Panel</a></li>
-	        <li class="active"><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	        <li><a href="<c:url value="/usersPanel"/>">User Panel</a></li>
+	        <li class="active"><a href="<c:url value="/clinicsPanel"/>">Clinic Panel</a></li>
 	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>	
 	      </ul>
 	    </div>
@@ -71,7 +71,7 @@
 					<div class="panel panel-success">
 						<div class="panel-heading"><h4>Create Clinic</h4></div>
 							<div class="panel-body">
-								<form:form method="POST" action="/mediapp/clinicsPanel/addClinic" modelAttribute="Clinic">								
+								<form:form method="POST" action="/MediAppSpring/clinicsPanel/addClinic" modelAttribute="Clinic">								
 										<div class="input-group">
 											<span class="input-group-addon">Country</span>
 											<form:select class="form-control" path="country" name = "country" id="selCountries" onchange="getProvinces()">
@@ -123,7 +123,7 @@
 				<div class="panel panel-success">
 					<div class="panel-heading"><h4>Search Clinics</h4></div>
 						<div class="panel-body">
-								<form:form method="POST" action="/mediapp/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
+								<form:form method="POST" action="/MediAppSpring/clinicsPanel/clinicSearchResults" modelAttribute="Clinic">
 									<div class="input-group">
 										<span class="input-group-addon">ID</span>
 										<form:input path="id" type="text" class="form-control"/>
@@ -155,7 +155,7 @@
 									</div>	
 								</form:form>
 								<hr>
-								<form:form method="POST" action="/mediapp/clinicsPanel/showAllClinics" modelAttribute="Clinic">
+								<form:form method="POST" action="/MediAppSpring/clinicsPanel/showAllClinics" modelAttribute="Clinic">
 									<input type="submit" class="btn btn-default" value="View All Clinics"/>
 								</form:form>
 							</div>
