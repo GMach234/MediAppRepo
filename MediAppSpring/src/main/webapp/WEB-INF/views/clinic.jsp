@@ -22,7 +22,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
+	<h1><a href="<c:url value="/usersPanel"/>">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
 
 <!-- NavBar -->
 	<nav class="navbar navbar-default" role="navigation">
@@ -40,8 +40,8 @@
 	  
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><a href="/mediapp/usersPanel">User Panel</a></li>
-	        <li class="active"><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	        <li><a href="<c:url value="/usersPanel"/>">User Panel</a></li>
+	        <li class="active"><a href="<c:url value="/clinicsPanel"/>">Clinic Panel</a></li>
 	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
 	      </ul>
 	    </div>
@@ -73,7 +73,7 @@
 								 </li>
 								 <li class="list-group-item">
 								 
-								 <form:form action="/mediapp/clinicsPanel/removeClinic/${clinic.id}" modelAttribute="Clinic">
+								 <form:form action="/MediAppSpring/clinicsPanel/removeClinic/${clinic.id}" modelAttribute="Clinic">
 <%-- 							  		<form:input path="id" type="hidden" name="remove" value="${clinic.id}"/> --%>
 									<input type="submit" class="btn btn-danger" value="Remove Clinic"/>
 								</form:form>

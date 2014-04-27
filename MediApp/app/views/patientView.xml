@@ -1,0 +1,17 @@
+<Alloy>
+<TabGroup class="container">
+		
+        <Tab id="viewTab" title="View" icon="KS_nav_views.png">
+        	<Window id="viewWindow" title="View" class="container">        		
+
+            </Window>
+        </Tab>
+   
+        <Tab id="addNoteTab" title="Add Note" icon="KS_nav_views.png">
+            <Window id="addNoteWindow" title="Add Note">
+                          
+            </Window>
+        </Tab>
+        
+    </TabGroup>
+</Alloy>

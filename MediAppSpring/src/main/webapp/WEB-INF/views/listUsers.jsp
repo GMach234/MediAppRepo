@@ -14,7 +14,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
+	<h1><a href="<c:url value="/usersPanel"/>">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
 
 <!-- NavBar -->
 	<nav class="navbar navbar-default" role="navigation">
@@ -32,8 +32,8 @@
 	  
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/mediapp/usersPanel">User Panel</a></li>
-	        <li><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	        <li class="active"><a href="<c:url value="/usersPanel"/>">User Panel</a></li>
+	        <li><a href="<c:url value="/clinicsPanel"/>">Clinic Panel</a></li>
 	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
 	      </ul>
 	    </div>
@@ -53,7 +53,7 @@
 									<tr>
 									<td>${user.id}</td><td>${user.name}</td><td>${user.type}</td><td>${user.email}</td>
 									<td>
-									<form action="/mediapp/usersPanel/showUser/${user.id}">
+									<form action="/MediAppSpring/usersPanel/showUser/${user.id}">
 									<button type="submit" class="btn btn-primary btn-block">View User</button>
 									</form>
 									</td>

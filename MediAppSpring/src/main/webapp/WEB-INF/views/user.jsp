@@ -22,7 +22,7 @@
 <body>
 
 <div class="container">
-	<h1><a href="/mediapp/controlPanel">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
+	<h1><a href="<c:url value="/usersPanel"/>">MediApp Control Panel <span class="badge"> User: <sec:authentication property="principal.username"/></span></a></h1>
 
 <!-- NavBar -->
 	<nav class="navbar navbar-default" role="navigation">
@@ -40,8 +40,8 @@
 	  
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/mediapp/usersPanel">User Panel</a></li>
-	        <li><a href="/mediapp/clinicsPanel">Clinic Panel</a></li>
+	        <li class="active"><a href="<c:url value="/usersPanel"/>">User Panel</a></li>
+	        <li><a href="<c:url value="/clinicsPanel"/>"">Clinic Panel</a></li>
 	        <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
 	      </ul>
 	    </div>
@@ -73,7 +73,7 @@
 								 </li>
 								 <li class="list-group-item">
 								 
-								 <form:form action="/mediapp/usersPanel/removeUser/${user.id}" modelAttribute="User">
+								 <form:form action="/MediAppSpring/usersPanel/removeUser/${user.id}" modelAttribute="User">
 							  		<form:input path="id" type="hidden" name="remove" value="${user.id}"/>
 									<input type="submit" class="btn btn-danger" value="Remove User"/>
 								</form:form>
@@ -89,7 +89,7 @@
 							<h3 class="panel-title">Add Clinic Association</h3>
 							</div>
 								<div class="panel-body">
-									<form:form action="/mediapp/usersPanel/showUser/${user.id}/addAssociation" modelAttribute="Clinic" method="GET">															
+									<form:form action="/MediAppSpring/usersPanel/showUser/${user.id}/addAssociation" modelAttribute="Clinic" method="GET">															
 									<div>
 										<select class="form-control" name = "country" id="selCountries" onchange="getProvinces()">
 											<option value="0">Country</option>
@@ -140,12 +140,12 @@
 									  	<td>${clinic.phone}</td>
 									  	<td>${clinic.email}</td>
 									  	<td>
-									  	<form:form method="GET" action="/mediapp/clinicsPanel/showClinic/${clinic.id}">
+									  	<form:form method="GET" action="/MediAppSpring/clinicsPanel/showClinic/${clinic.id}">
 											<input type="submit" class="btn btn-primary" value="View"/>
 										</form:form>
 									  	</td>
 									  	<td>
-									  	<form:form action="/mediapp/usersPanel/removeAssociation/${clinic.id}" modelAttribute="User">
+									  	<form:form action="/MediAppSpring/usersPanel/removeAssociation/${clinic.id}" modelAttribute="User">
 									  		<form:input path="id" type="hidden" name="remove" value="${user.id}"/>
 											<input type="submit" class="btn btn-danger" value="Remove Association"/>
 										</form:form>
@@ -174,7 +174,7 @@ $(document).ready(function(){
 	$.ajax({
 				
 		type: 'GET',
-		url: '/mediapp/clinicsPanel/countries',
+		url: '/MediAppSpring/clinicsPanel/countries',
 		success: function(response){
 			console.log(response);
 			popCountries(response);
@@ -206,7 +206,7 @@ function getProvinces(){
 
 	$.ajax({
 		type: 'GET',
-		url: '/mediapp/clinicsPanel/pdata/' + country.val(),    
+		url: '/MediAppSpring/clinicsPanel/pdata/' + country.val(),    
 		success: function(response){
 			console.log(response);
 			popProvinces(response);	
@@ -243,7 +243,7 @@ function getTowns(){
 
 	$.ajax({
 		type: 'GET',
-		url: '/mediapp/clinicsPanel/tdata/' + province.val(),    
+		url: '/MediAppSpring/clinicsPanel/tdata/' + province.val(),    
 		success: function(response){
 			console.log(response);
 			popTowns(response);		
@@ -280,7 +280,7 @@ function getNames(){
 	
 	$.ajax({
 		type: 'GET',
-		url: '/mediapp/clinicsPanel/ndata/' + town.val(),    
+		url: '/MediAppSpring/clinicsPanel/ndata/' + town.val(),    
 		success: function(response){
 			console.log(response);
 			popNames(response);

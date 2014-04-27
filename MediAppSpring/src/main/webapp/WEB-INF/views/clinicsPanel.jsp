@@ -190,7 +190,7 @@ $(document).ready(function(){
 	$.ajax({
 				
 		type: 'GET',
-		url: '/mediapp/clinicsPanel/countries',
+		url: '/MediAppSpring/clinicsPanel/countries',
 		success: function(response){
 			console.log(response);
 			popCountries(response);
@@ -222,7 +222,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'GET',
-			url: '/mediapp/clinicsPanel/pdata/' + country.val(),    
+			url: '/MediAppSpring/clinicsPanel/pdata/' + country.val(),    
 			success: function(response){
 				console.log(response);
 				popProvinces(response);	
@@ -259,7 +259,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'GET',
-			url: '/mediapp/clinicsPanel/tdata/' + province.val(),    
+			url: '/MediAppSpring/clinicsPanel/tdata/' + province.val(),    
 			success: function(response){
 				console.log(response);
 				popTowns(response);		
@@ -296,7 +296,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type: 'GET',
-			url: '/mediapp/clinicsPanel/ndata/' + town.val(),    
+			url: '/MediAppSpring/clinicsPanel/ndata/' + town.val(),    
 			success: function(response){
 				console.log(response);
 				popNames(response);

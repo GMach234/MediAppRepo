@@ -1,8 +1,15 @@
 ".container": {
-	backgroundColor:"white"
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: ['teal', 'white', 'white', 'teal']
+	}
+		
 },
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "#000"
+	color: "#000",
+	font:{fontSize: '32dp', fontWeight: 'bold'}
 } 

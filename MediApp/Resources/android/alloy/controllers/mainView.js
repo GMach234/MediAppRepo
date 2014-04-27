@@ -1,4 +1,199 @@
 function Controller() {
+    function getUserPatients() {
+        var pClient = Ti.Network.createHTTPClient({
+            onload: function() {
+                var userPatientsJson = JSON.parse(this.responseText);
+                for (i in userPatientsJson) {
+                    var view = Ti.UI.createView({
+                        height: Ti.UI.FILL,
+                        width: Ti.UI.FILL
+                    });
+                    var label = Ti.UI.createLabel({
+                        color: "black",
+                        font: {
+                            fontSize: 18,
+                            fontWeight: "bold"
+                        },
+                        text: userPatientsJson[i].name,
+                        left: 10
+                    });
+                    var label1 = Ti.UI.createLabel({
+                        color: "black",
+                        font: {
+                            fontSize: 18
+                        },
+                        text: "(Patient ID: " + userPatientsJson[i].id + ")",
+                        right: 10
+                    });
+                    var row = Ti.UI.createTableViewRow({
+                        height: 50
+                    });
+                    view.add(label);
+                    view.add(label1);
+                    row.add(view);
+                    row.ID = userPatientsJson[i].id;
+                    row.addEventListener("click", function(e) {
+                        Titanium.App.Properties.setString("patientId", e.row.ID);
+                        var patientView = Alloy.createController("patientView").getView();
+                        patientView.open();
+                    });
+                    $.myPatientsTable.appendRow(row);
+                }
+                getClinics(loopClinics);
+            }
+        });
+        pClient.open("GET", "http://185.38.44.166:8080/MediAppRest/getUserPatients/" + Titanium.App.Properties.getString("userId"));
+        pClient.send();
+    }
+    function getClinics(loopClinics) {
+        var cClient = Ti.Network.createHTTPClient({
+            onload: function() {
+                var clinicsJson = JSON.parse(this.responseText);
+                loopClinics(clinicsJson);
+            }
+        });
+        cClient.open("GET", "http://185.38.44.166:8080/MediAppRest/getClinics/" + Titanium.App.Properties.getString("userId"));
+        cClient.send();
+    }
+    function loopClinics(clinicsJson) {
+        for (i in clinicsJson) getPatients(displayData, clinicsJson[i]);
+    }
+    function getPatients(displayData, clinicData) {
+        var pClient = Ti.Network.createHTTPClient({
+            onload: function() {
+                var patientsJson = JSON.parse(this.responseText);
+                displayData(patientsJson, clinicData);
+            }
+        });
+        pClient.open("GET", "http://185.38.44.166:8080/MediAppRest/getPatients/" + clinicData.id);
+        pClient.send();
+    }
+    function displayData(patientsJson, clinicData) {
+        var view = Titanium.UI.createView({
+            height: 40,
+            width: Ti.UI.FILL,
+            backgroundColor: "teal"
+        });
+        var label = Titanium.UI.createLabel({
+            text: clinicData.name,
+            color: "black",
+            font: {
+                fontSize: 20,
+                fontWeight: "bold"
+            },
+            left: 10
+        });
+        var label1 = Titanium.UI.createLabel({
+            text: "(Clinic ID " + clinicData.id + ")",
+            color: "black",
+            font: {
+                fontSize: 16,
+                fontWeight: "bold"
+            },
+            right: 10
+        });
+        view.add(label);
+        view.add(label1);
+        var section = Ti.UI.createTableViewSection({
+            headerView: view
+        });
+        for (i = 0; patientsJson.length > i; i++) {
+            var view = Titanium.UI.createView({
+                height: Ti.UI.FILL,
+                width: Ti.UI.FILL
+            });
+            var label = Titanium.UI.createLabel({
+                text: patientsJson[i].name,
+                color: "black",
+                font: {
+                    fontSize: 16
+                },
+                left: 10
+            });
+            var label1 = Titanium.UI.createLabel({
+                text: "(Patient ID: " + patientsJson[i].id + ")",
+                color: "black",
+                font: {
+                    fontSize: 16
+                },
+                right: 10
+            });
+            var row = Ti.UI.createTableViewRow({
+                height: 40
+            });
+            view.add(label);
+            view.add(label1);
+            row.add(view);
+            row.ID = patientsJson[i].id;
+            row.addEventListener("click", function(e) {
+                Titanium.App.Properties.setString("patientId", e.row.ID);
+                var patientView = Alloy.createController("patientView").getView();
+                patientView.open();
+            });
+            section.add(row);
+        }
+        $.searchTable.appendSection(section);
+    }
+    function displayClinics(clinicsJson) {
+        for (i in clinicsJson) {
+            var view = Titanium.UI.createView({
+                top: 5,
+                bottom: 5,
+                height: Ti.UI.FILL,
+                width: Ti.UI.FILL
+            });
+            var label = Titanium.UI.createLabel({
+                text: clinicsJson[i].name,
+                color: "black",
+                font: {
+                    fontSize: 18,
+                    fontWeight: "bold"
+                },
+                left: 10,
+                top: 0
+            });
+            var label1 = Titanium.UI.createLabel({
+                text: "(Clinic ID: " + clinicsJson[i].id + ")",
+                color: "black",
+                font: {
+                    fontSize: 18,
+                    fontWeight: "bold"
+                },
+                right: 10,
+                textAlign: "right",
+                top: 0
+            });
+            var label2 = Titanium.UI.createLabel({
+                text: "\nEmail: \nPhone: \nAddress:\n",
+                color: "black",
+                font: {
+                    fontSize: 16,
+                    fontWeight: "bold"
+                },
+                left: 10
+            });
+            var label3 = Titanium.UI.createLabel({
+                text: "\n" + clinicsJson[i].email + "\n" + clinicsJson[i].phone + "\n\n" + clinicsJson[i].address,
+                color: "black",
+                font: {
+                    fontSize: 16
+                },
+                textAlign: "right",
+                right: 10
+            });
+            var row = Ti.UI.createTableViewRow({
+                height: Ti.UI.SIZE
+            });
+            view.add(label);
+            view.add(label1);
+            view.add(label2);
+            view.add(label3);
+            row.add(view);
+            section.add(row);
+        }
+        table.appendSection(section);
+        optionsView.add(table);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "mainView";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -6,132 +201,166 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    var __alloyId2 = [];
+    var __alloyId0 = [];
     $.__views.myPatients = Ti.UI.createWindow({
+        backgroundGradient: {
+            type: "linear",
+            startPoint: {
+                x: "50%",
+                y: "100%"
+            },
+            endPoint: {
+                x: "50%",
+                y: "0%"
+            },
+            colors: [ "teal", "white", "white", "teal" ]
+        },
         id: "myPatients",
         title: "My Patients"
     });
-    $.__views.label1 = Ti.UI.createLabel({
-        text: "My Patients Window",
-        id: "label1",
-        color: "#999"
+    $.__views.myPatientsActivity = Ti.UI.createView({
+        id: "myPatientsActivity"
     });
-    $.__views.myPatients.add($.__views.label1);
-    var __alloyId5 = [];
-    $.__views.__alloyId6 = {
-        properties: {
-            title: "List item 1",
-            id: "__alloyId6"
-        }
-    };
-    __alloyId5.push($.__views.__alloyId6);
-    $.__views.__alloyId7 = {
-        properties: {
-            title: "List item 2",
-            id: "__alloyId7"
-        }
-    };
-    __alloyId5.push($.__views.__alloyId7);
-    $.__views.__alloyId8 = {
-        properties: {
-            title: "List item 3",
-            id: "__alloyId8"
-        }
-    };
-    __alloyId5.push($.__views.__alloyId8);
-    $.__views.__alloyId3 = Ti.UI.createListSection({
-        id: "__alloyId3"
+    $.__views.myPatients.add($.__views.myPatientsActivity);
+    $.__views.myPatientsTable = Ti.UI.createTableView({
+        id: "myPatientsTable"
     });
-    $.__views.__alloyId3.items = __alloyId5;
-    var __alloyId9 = [];
-    __alloyId9.push($.__views.__alloyId3);
-    $.__views.list = Ti.UI.createListView({
-        sections: __alloyId9,
-        id: "list"
-    });
-    $.__views.myPatients.add($.__views.list);
+    $.__views.myPatientsActivity.add($.__views.myPatientsTable);
     $.__views.myPatientsTab = Ti.UI.createTab({
         window: $.__views.myPatients,
         id: "myPatientsTab",
         title: "My Patients",
         icon: "KS_nav_views.png"
     });
-    __alloyId2.push($.__views.myPatientsTab);
+    __alloyId0.push($.__views.myPatientsTab);
     $.__views.search = Ti.UI.createWindow({
         id: "search",
         title: "Search"
     });
-    $.__views.label2 = Ti.UI.createLabel({
-        text: "Search Window",
-        id: "label2",
-        color: "#999"
+    $.__views.searchActivity = Ti.UI.createView({
+        id: "searchActivity"
     });
-    $.__views.search.add($.__views.label2);
-    var __alloyId12 = [];
-    $.__views.__alloyId13 = {
-        properties: {
-            title: "List item 1",
-            id: "__alloyId13"
-        }
-    };
-    __alloyId12.push($.__views.__alloyId13);
-    $.__views.__alloyId14 = {
-        properties: {
-            title: "List item 2",
-            id: "__alloyId14"
-        }
-    };
-    __alloyId12.push($.__views.__alloyId14);
-    $.__views.__alloyId15 = {
-        properties: {
-            title: "List item 3",
-            id: "__alloyId15"
-        }
-    };
-    __alloyId12.push($.__views.__alloyId15);
-    $.__views.__alloyId10 = Ti.UI.createListSection({
-        id: "__alloyId10"
+    $.__views.search.add($.__views.searchActivity);
+    $.__views.searchTable = Ti.UI.createTableView({
+        id: "searchTable"
     });
-    $.__views.__alloyId10.items = __alloyId12;
-    var __alloyId16 = [];
-    __alloyId16.push($.__views.__alloyId10);
-    $.__views.list = Ti.UI.createListView({
-        sections: __alloyId16,
-        id: "list"
-    });
-    $.__views.search.add($.__views.list);
+    $.__views.searchActivity.add($.__views.searchTable);
     $.__views.searchTab = Ti.UI.createTab({
         window: $.__views.search,
         id: "searchTab",
         title: "Search",
         icon: "KS_nav_views.png"
     });
-    __alloyId2.push($.__views.searchTab);
+    __alloyId0.push($.__views.searchTab);
     $.__views.options = Ti.UI.createWindow({
+        backgroundGradient: {
+            type: "linear",
+            startPoint: {
+                x: "50%",
+                y: "100%"
+            },
+            endPoint: {
+                x: "50%",
+                y: "0%"
+            },
+            colors: [ "teal", "white", "white", "teal" ]
+        },
         id: "options",
         title: "Options"
     });
-    $.__views.label2 = Ti.UI.createLabel({
-        text: "Options Window",
-        id: "label2",
-        color: "#999"
-    });
-    $.__views.options.add($.__views.label2);
     $.__views.optionsTab = Ti.UI.createTab({
         window: $.__views.options,
         id: "optionsTab",
         title: "Options",
         icon: "KS_nav_views.png"
     });
-    __alloyId2.push($.__views.optionsTab);
+    __alloyId0.push($.__views.optionsTab);
     $.__views.mainView = Ti.UI.createTabGroup({
-        tabs: __alloyId2,
-        backgroundColor: "white",
+        backgroundGradient: {
+            type: "linear",
+            startPoint: {
+                x: "50%",
+                y: "100%"
+            },
+            endPoint: {
+                x: "50%",
+                y: "0%"
+            },
+            colors: [ "teal", "white", "white", "teal" ]
+        },
+        tabs: __alloyId0,
         id: "mainView"
     });
     $.__views.mainView && $.addTopLevelView($.__views.mainView);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    getUserPatients();
+    var optionsView = Ti.UI.createView({
+        backgroundColor: "transparent",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        layout: "vertical"
+    });
+    var detailsView = Titanium.UI.createView({
+        height: Titanium.UI.SIZE,
+        width: Titanium.UI.FILL,
+        layout: "horizontal",
+        top: 10,
+        bottom: 10
+    });
+    var label = Titanium.UI.createLabel({
+        text: "Name: \nID: \nEmail: \nPhone: \nAddress: ",
+        color: "black",
+        font: {
+            fontSize: 16
+        },
+        left: 10,
+        right: 12
+    });
+    var label1 = Titanium.UI.createLabel({
+        text: Titanium.App.Properties.getString("userName") + "\n" + Titanium.App.Properties.getString("userId") + " (Type: " + Titanium.App.Properties.getString("userType") + ")" + "\n" + Titanium.App.Properties.getString("userEmail") + "\n" + Titanium.App.Properties.getString("userPhone") + "\n" + Titanium.App.Properties.getString("userAddress"),
+        color: "black",
+        font: {
+            fontSize: 16
+        },
+        right: 10
+    });
+    detailsView.add(label);
+    detailsView.add(label1);
+    optionsView.add(detailsView);
+    var table = Titanium.UI.createTableView({});
+    var section = Ti.UI.createTableViewSection({
+        headerTitle: "Assigned Clinics"
+    });
+    getClinics(displayClinics);
+    $.options.add(optionsView);
+    var bottomButtons = Ti.UI.createView({
+        bottom: 0,
+        height: 110,
+        layout: "vertical",
+        width: Ti.UI.FILL
+    });
+    var btn1 = Titanium.UI.createButton({
+        title: "Add Clinic",
+        right: 5,
+        left: 5,
+        bottom: 0,
+        height: 50,
+        width: Ti.UI.FILL
+    });
+    var btn2 = Titanium.UI.createButton({
+        title: "Logout",
+        right: 5,
+        left: 5,
+        bottom: 0,
+        height: 50,
+        width: Ti.UI.FILL
+    });
+    bottomButtons.add(btn1);
+    bottomButtons.add(btn2);
+    $.options.add(bottomButtons);
     _.extend($, exports);
 }
 

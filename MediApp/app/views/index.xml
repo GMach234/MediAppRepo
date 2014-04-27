@@ -1,13 +1,12 @@
 <Alloy>
 	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
 		
-		<Menu id="menu" platform="android">
-			<MenuItem id="showLogin"
-				title="Login"
-				onClick="showLogin"
-				showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM" />
-		</Menu>
+		<View id="loginView" layout="vertical" top="140">
+        	<Label id="emailId" text="Login" top="20"></Label>
+            <TextField id="inputEmail" width="250" hintText="Email" top="40" value="admin@admin.com" color='black'/>
+            <TextField id="inputPass" passwordMask="true" width="250" hintText="Password" top="20" value="admin123" color='black'/>
+            <Button id="buttonLogin" onClick="login" width="200" top="20">Log In</Button> 
+        </View>
 		
 	</Window>
 </Alloy>

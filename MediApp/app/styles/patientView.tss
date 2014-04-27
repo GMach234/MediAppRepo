@@ -1,0 +1,9 @@
+".container": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: ['teal', 'white', 'white', 'teal']
+	}
+}
+
